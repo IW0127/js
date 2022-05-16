@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <style>
+        span {
+            color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" name="myForm">
+        <label for="fname">First Name: </label>
+        <input type="text" name="fname" id="fname">
+        <span class="fname"></span>
+        <br><br>
+
+        <label for="lname">Last Name: </label>
+        <input type="text" name="lname" id="lname">
+        <span class="lname"></span>
+        <br><br>
+
+        <label for="email">Your Email:</label>
+        <input type="text" name="email" id="email">
+        <span class="email"></span>
+        <br><br>
+
+        <label for="gender">Gender :</label>
+        <label for="male">male</label>
+        <input type="radio" name="gender" class="gender" id="male" value="male">
+        <label for="female">female</label>
+        <input type="radio" name="gender" class="gender" id="female" value="female">
+        <span class="gender"></span>
+        <br><br>
+
+        <label for="hobbies">hobbies : </label>
+        <label for="drawing">playing</label>
+        <input type="checkbox" name="hobbies[]" id="drawing" value="drawing">
+        <label for="singing">singing</label>
+        <input type="checkbox" name="hobbies[]" id="singing" value="singing">
+        <label for="dancing">dancing</label>
+        <input type="checkbox" name="hobbies[]" id="dancing" value="dancing">
+        <span class="hobbies"></span>
+        <br><br>
+
+        <label for="country">Country : </label>
+        <select name="country" id="country">
+            <option value="" disabled selected></option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="INDIA">INDIA</option>
+        </select>
+        <span class="country"></span>
+        <br><br>
+
+        <input type="submit" value="submit" id="subBtn">
+        <input type="button" value="reset">
+    </form>
+
+    <div id="ans"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $("#subBtn").click(function (e) {
+            e.preventDefault();
+
+            const fname = $("#fname").val();
+            const lname = $("#lname").val();
+            const email = $("#email").val();
+            const gender = $("input[name='gender']:checked").val();
+            const hobbies = $('input[name="hobbies[]"]:checked');
+            const country = $("#country").val();
+            console.log(hobbies);
+            if (fname == "") {
+                $(".fname").text("First Name can not be left blank.");
+            } else {
+                $(".fname").text("");
+            }
+            if (lname == "") {
+                $(".lname").text("Last Name can not be left blank.");
+            } else {
+                $(".lname").text("")
+            }
+            if (email == "") {
+                $(".email").text("Email Name can not be left blank.");
+            } else {
+                $(".email").text("");
+
+            }
+            let values = [];
+            hobbies.each((checkbox) => {
+                values.push(this.val());
+            });
+            console.log(values);
+            if (values == "") {
+                $(".hobbies").text("hobbies can not be left blank.");
+            } else {
+                $(".hobbies").text("");
+
+            }
+
+            if (!gender) {
+                $(".gender").text("Gender Name can not be left blank.");
+            } else {
+                $(".gender").text("");
+
+            }
+            if (country == "") {
+                $(".country").text("Country Name can not be left blank.");
+            } else {
+                $(".country").text("");
+            }
+            $("#ans").html(`
+            <p>first name : ${fname}</p>
+            <p>last name : ${lname}</p>
+            <p>email : ${email}</p>
+            <p>hobbies : ${values}</p>
+            <p>gender : ${gender}</p>
+            <p>country : ${country}</p>`)
+
+            console.log({ fname, lname, email, gender, country, hobbies: values });
+        });
+    </script>
+</body>
+
+</html>

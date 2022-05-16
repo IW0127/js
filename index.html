@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+
+<body>
+
+    <form action="">
+        <label>Enter the A:</label>
+        <input type="number" name="a" id="a">
+        <br><br>
+        <label>Enter the B:</label>
+        <input type="number" name="b" id="b">
+        <br><br>
+        <input type="button" value="submit" id="subBtn">
+    </form>
+    <div id="ans"></div>
+    <script>
+        const submit = document.querySelector("#subBtn");
+        const a = document.querySelector("#a");
+        const b = document.querySelector("#b");
+        submit.addEventListener("click", () => {
+            const sum = a.value + b.value;
+            const sub = a.value - b.value;
+            const mul = a.value * b.value;
+            const div = a.value / b.value;
+            document.querySelector("#ans").innerHTML = `
+            <p>sum: ${sum}</p>
+            <p>sum: ${sub}</p>
+            <p>sum: ${mul}</p>
+            <p>sum: ${div}</p>`;
+            a.value = "";
+            b.value = "";
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <style>
+        span {
+            color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" name="myForm">
+        <label for="fname">First Name: </label>
+        <input type="text" name="fname" id="fname">
+        <span class="fname"></span>
+        <br><br>
+
+        <label for="lname">Last Name: </label>
+        <input type="text" name="lname" id="lname">
+        <span class="lname"></span>
+        <br><br>
+
+        <label for="email">Your Email:</label>
+        <input type="text" name="email" id="email">
+        <span class="email"></span>
+        <br><br>
+
+        <label for="gender">Gender :</label>
+        <label for="male">male</label>
+        <input type="radio" name="gender" id="male" value="male">
+        <label for="female">female</label>
+        <input type="radio" name="gender" id="female" value="female">
+        <span class="gender"></span>
+        <br><br>
+
+        <label for="hobbies">hobbies : </label>
+        <label for="drawing">playing</label>
+        <input type="checkbox" name="hobbies" id="drawing" value="drawing">
+        <label for="singing">singing</label>
+        <input type="checkbox" name="hobbies" id="singing" value="singing">
+        <label for="dancing">dancing</label>
+        <input type="checkbox" name="hobbies" id="dancing" value="dancing">
+        <span class="hobbies"></span>
+        <br><br>
+
+        <label for="country">Country : </label>
+        <select name="country" id="country">
+            <option value="" disabled selected></option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="INDIA">INDIA</option>
+        </select>
+        <span class="country"></span>
+        <br><br>
+
+        <input type="button" onclick="validation()" value="submit">
+        <input type="button" value="reset" onclick="resetFunction()">
+    </form>
+
+    <div id="ans"></div>
+
+    <script>
+
+        const form = document.myForm;
+        function validation() {
+            const fname = form.fname.value;
+            const lname = form.lname.value;
+            const email = form.email.value;
+            const gender = form.gender.value;
+            const hobbies = document.querySelectorAll('input[name="hobbies"]:checked');
+            const country = form.country.value;
+
+            if (fname == "") {
+                document.querySelector(".fname").innerHTML = "First Name can not be left blank."
+            } else {
+                document.querySelector(".fname").innerHTML = ""
+            }
+            if (lname == "") {
+                document.querySelector(".lname").innerHTML = "Last Name can not be left blank."
+            } else {
+                document.querySelector(".lname").innerHTML = ""
+
+            }
+            if (email == "") {
+                document.querySelector(".email").innerHTML = "Email Name can not be left blank."
+            } else {
+                document.querySelector(".email").innerHTML = ""
+
+            }
+            let values = [];
+            hobbies.forEach((checkbox) => {
+                values.push(checkbox.value);
+            });
+            if (values == "") {
+                document.querySelector(".hobbies").innerHTML = "hobbies can not be left blank.";
+            } else {
+                document.querySelector(".hobbies").innerHTML = ""
+
+            }
+
+            if (gender == "") {
+                document.querySelector(".gender").innerHTML = "Gender Name can not be left blank."
+            } else {
+                document.querySelector(".gender").innerHTML = ""
+
+            }
+            if (country == "") {
+                document.querySelector(".country").innerHTML = "Country Name can not be left blank."
+            } else {
+                document.querySelector(".country").innerHTML = ""
+            }
+            document.querySelector("#ans").innerHTML = `
+            <p>first name : ${fname}</p>
+            <p>last name : ${lname}</p>
+            <p>email : ${email}</p>
+            <p>hobbies : ${values}</p>
+            <p>gender : ${gender}</p>
+            <p>country : ${country}</p>`
+
+            console.log({ fname, lname, email, gender, country, hobbies: values });
+        }
+        function resetFunction() {
+
+            document.myForm.reset();
+        }
+    </script>
+</body>
+
+</html>
