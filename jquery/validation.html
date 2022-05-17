@@ -40,11 +40,11 @@
 
         <label for="hobbies">hobbies : </label>
         <label for="drawing">playing</label>
-        <input type="checkbox" name="hobbies[]" id="drawing" value="drawing">
+        <input type="checkbox" name="hobbies" id="drawing" value="drawing">
         <label for="singing">singing</label>
-        <input type="checkbox" name="hobbies[]" id="singing" value="singing">
+        <input type="checkbox" name="hobbies" id="singing" value="singing">
         <label for="dancing">dancing</label>
-        <input type="checkbox" name="hobbies[]" id="dancing" value="dancing">
+        <input type="checkbox" name="hobbies" id="dancing" value="dancing">
         <span class="hobbies"></span>
         <br><br>
 
@@ -72,7 +72,7 @@
             const lname = $("#lname").val();
             const email = $("#email").val();
             const gender = $("input[name='gender']:checked").val();
-            const hobbies = $('input[name="hobbies[]"]:checked');
+            const hobbies = $('input[name="hobbies"]:checked');
             const country = $("#country").val();
             console.log(hobbies);
             if (fname == "") {
@@ -91,12 +91,13 @@
                 $(".email").text("");
 
             }
-            let values = [];
-            hobbies.each((checkbox) => {
-                values.push(this.val());
+            var val = [];
+            hobbies.each(function (i) {
+                val[i] = $(this).val();
             });
-            console.log(values);
-            if (values == "") {
+
+            console.log(val);
+            if (val == "") {
                 $(".hobbies").text("hobbies can not be left blank.");
             } else {
                 $(".hobbies").text("");
@@ -109,7 +110,7 @@
                 $(".gender").text("");
 
             }
-            if (country == "") {
+            if (country == undefined) {
                 $(".country").text("Country Name can not be left blank.");
             } else {
                 $(".country").text("");
@@ -118,11 +119,11 @@
             <p>first name : ${fname}</p>
             <p>last name : ${lname}</p>
             <p>email : ${email}</p>
-            <p>hobbies : ${values}</p>
+            <p>hobbies : ${val}</p>
             <p>gender : ${gender}</p>
             <p>country : ${country}</p>`)
 
-            console.log({ fname, lname, email, gender, country, hobbies: values });
+            console.log({ fname, lname, email, gender, country, hobbies: val });
         });
     </script>
 </body>
