@@ -37,6 +37,9 @@ body {
     align-items: center;
     opacity: 0;
     transition: 300ms;
+    background-image: url(./magic-wand.png);
+    background-repeat: no-repeat;
+    background-position: 50% 20px;
 }
 
 .Wlc {
