@@ -31,6 +31,6 @@ rand.forEach(num => {
     num.innerHTML = randomNumber;
 });
 
-answer.innerHTML = Math.floor(randomNumber / 2);
+answer.innerHTML = randomNumber / 2;
 
 

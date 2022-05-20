@@ -34,7 +34,7 @@ ViewMore.forEach(prev => {
         const num = document.querySelectorAll(".num");
         num.forEach(n => {
             n.addEventListener('click', () => {
-                n.style.display = "none";
+                // n.style.display = "none";
                 getPreviousSibling(n);
             });
         });
@@ -51,12 +51,12 @@ const getPreviousSibling = (elem) => {
 
 
 
-a: [{
-    214: {
-        "a": 1,
-        "b": 1
-    },
-}]
-a == 10 ? true : false;
+// a: [{
+//     214: {
+//         "a": 1,
+//         "b": 1
+//     },
+// }]
+// a == 10 ? true : false;
 
 
