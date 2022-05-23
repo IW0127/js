@@ -18,7 +18,12 @@
 // console.log('Execution time: ' + time);
 // setInterval(() => {
 
-function dk() {
+
+
+
+
+
+// function dk() {
     // var origOpen = XMLHttpRequest.prototype.open;
     // if (XMLHttpRequest.prototype.send) {
     //     (function () {
@@ -28,23 +33,23 @@ function dk() {
     //     }());
     // };
 
-    XMLHttpRequest.prototype.send = function () {
-        console.log('request started!');
-        this.addEventListener('load', function () {
-            console.log('request completed!');
-            console.log(this.readyState); //will always be 4 (ajax is completed successfully)
+    // XMLHttpRequest.prototype.send = function () {
+    //     console.log('request started!');
+    //     this.addEventListener('load', function () {
+    //         console.log('request completed!');
+    //         console.log(this.readyState); //will always be 4 (ajax is completed successfully)
             // console.log(this.getAll  ResponseHeaders());
-            console.log(this.responseText); //whatever the response was
-        });
-    }
-};
+            // console.log(this.responseText); //whatever the response was
+//         });
+//     }
+// };
 
 
-dk();
+// dk();
 
-const xhttp = new XMLHttpRequest();
-xhttp.onload = function () {
-    console.log(this.getAllResponseHeaders());
-}
-xhttp.open("GET", "ajax_info.txt");
-xhttp.send();
+// const xhttp = new XMLHttpRequest();
+// xhttp.onload = function () {
+//     console.log(this.getAllResponseHeaders());
+// }
+// xhttp.open("GET", "ajax_info.txt");
+// xhttp.send();
