@@ -42,6 +42,10 @@ body {
     cursor: pointer;
 }
 
+.num {
+    display: none;
+}
+
 .num:hover {
     color: #ff0000;
     cursor: pointer;
