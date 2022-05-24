@@ -49,11 +49,19 @@
         <br><br>
 
         <label for="country">Country : </label>
-        <select name="country" id="country">
-            <option value="" disabled selected></option>
+        <select name="country" id="country" onchange="changeState()">
+            <option value="" disabled selected>Select Country</option>
             <option value="USA">USA</option>
             <option value="UK">UK</option>
             <option value="INDIA">INDIA</option>
+        </select>
+        <label for="state">State :</label>
+        <select name="state" id="stat">
+            <option value="" disabled selected>Select Country first</option>
+        </select>
+        <label for="ciyt">City :</label>
+        <select name="city" id="city">
+            <option value="" disabled selected>Select State first</option>
         </select>
         <span class="country"></span>
         <br><br>
@@ -63,72 +71,79 @@
     </form>
 
     <div id="ans"></div>
+    <script src="./script.js"></script>
+</body>
 
+</html>
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Untitled Document</title>
     <script>
-
-        const form = document.myForm;
-        function validation() {
-            const fname = form.fname.value;
-            const lname = form.lname.value;
-            const email = form.email.value;
-            const gender = form.gender.value;
-            const hobbies = document.querySelectorAll('input[name="hobbies"]:checked');
-            const country = form.country.value;
-
-            if (fname == "") {
-                document.querySelector(".fname").innerHTML = "First Name can not be left blank."
-            } else {
-                document.querySelector(".fname").innerHTML = ""
-            }
-            if (lname == "") {
-                document.querySelector(".lname").innerHTML = "Last Name can not be left blank."
-            } else {
-                document.querySelector(".lname").innerHTML = ""
-
-            }
-            if (email == "") {
-                document.querySelector(".email").innerHTML = "Email Name can not be left blank."
-            } else {
-                document.querySelector(".email").innerHTML = ""
-
-            }
-            let values = [];
-            hobbies.forEach((checkbox) => {
-                values.push(checkbox.value);
-            });
-            if (values == "") {
-                document.querySelector(".hobbies").innerHTML = "hobbies can not be left blank.";
-            } else {
-                document.querySelector(".hobbies").innerHTML = ""
-
-            }
-
-            if (gender == "") {
-                document.querySelector(".gender").innerHTML = "Gender Name can not be left blank."
-            } else {
-                document.querySelector(".gender").innerHTML = ""
-
-            }
-            if (country == "") {
-                document.querySelector(".country").innerHTML = "Country Name can not be left blank."
-            } else {
-                document.querySelector(".country").innerHTML = ""
-            }
-            document.querySelector("#ans").innerHTML = `
-            <p>first name : ${fname}</p>
-            <p>last name : ${lname}</p>
-            <p>email : ${email}</p>
-            <p>hobbies : ${values}</p>
-            <p>gender : ${gender}</p>
-            <p>country : ${country}</p>`
-
-            console.log({ fname, lname, email, gender, country, hobbies: values });
+        var stateObject = {
+            "India": {
+                "Delhi": ["new Delhi", "North Delhi"],
+                "Kerala": ["Thiruvananthapuram", "Palakkad"],
+                "Goa": ["North Goa", "South Goa"],
+            },
+            "Australia": {
+                "South Australia": ["Dunstan", "Mitchell"],
+                "Victoria": ["Altona", "Euroa"]
+            }, "Canada": {
+                "Alberta": ["Acadia", "Bighorn"],
+                "Columbia": ["Washington", ""]
+            },
         }
-        function resetFunction() {
-
-            document.myForm.reset();
+        window.onload = function () {
+            var countySel = document.getElementById("countySel"),
+                stateSel = document.getElementById("stateSel"),
+                districtSel = document.getElementById("districtSel");
+            for (var country in stateObject) {
+                countySel.options[countySel.options.length] = new Option(country, country);
+            }
+            countySel.onchange = function () {
+                // stateSel.length = 1; // remove all options bar first
+                // districtSel.length = 1; // remove all options bar first
+                if (this.selectedIndex < 1) return; // done 
+                for (var state in stateObject[this.value]) {
+                    stateSel.options[stateSel.options.length] = new Option(state, state);
+                }
+            }
+            countySel.onchange(); // reset in case page is reloaded
+            stateSel.onchange = function () {
+                districtSel.length = 1; // remove all options bar first
+                if (this.selectedIndex < 1) return; // done 
+                var district = stateObject[countySel.value][this.value];
+                for (var i = 0; i < district.length; i++) {
+                    districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+                }
+            }
         }
     </script>
+</head>
+
+<body>
+    <form name="myform" id="myForm">
+        Select Country: <select name="state" id="countySel" size="1">
+            <option value="" selected="selected">Select Country</option>
+        </select>
+        <br>
+        <br>
+        Select State: <select name="countrya" id="stateSel" size="1">
+            <option value="" selected="selected">Please select Country first</option>
+            <option value="" selected="selected">Please select Country first</option>
+        </select>
+        <br>
+        <br>
+        Select District: <select name="district" id="districtSel" size="1">
+            <option value="" selected="selected">Please select State first</option>
+        </select><br>
+        <input type="submit">
+        <closeform></closeform>
+    </form>
 </body>
 
 </html>

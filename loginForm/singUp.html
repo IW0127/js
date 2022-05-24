@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <script>
+        const username = sessionStorage.getItem('user');
+        const login = sessionStorage.getItem('login');
+
+        if (username != "" && login == true) {
+            window.location.href = "./login.html";
+        } 
+    </script>
+    <style>
+        span {
+            color: #ff0000;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post" name="myForm">
+        <table>
+            <tr>
+                <td>
+                    <label for="username">Username </label>
+                </td>
+                <td>:</td>
+                <td>
+                    <input type="text" name="username" id="username">
+                </td>
+                <td>
+                    <span class="lname"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Email</label>
+                </td>
+                <td>:</td>
+
+                <td>
+                    <input type="text" name="email" id="email">
+                </td>
+                <td>
+                    <span class="email"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="gender">Gender </label>
+
+                </td>
+                <td>:</td>
+
+                <td>
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">male</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">female</label>
+                </td>
+                <td>
+                    <span class="gender"></span>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="hobbies">hobbies </label>
+
+                </td>
+                <td>:</td>
+                <td>
+                    <input type="checkbox" name="hobbies" id="drawing" value="drawing">
+                    <label for="drawing">drawing</label>
+                    <input type="checkbox" name="hobbies" id="singing" value="singing">
+                    <label for="singing">singing</label>
+                    <input type="checkbox" name="hobbies" id="dancing" value="dancing">
+                    <label for="dancing">dancing</label>
+                </td>
+                <td><span class="hobbies"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="country">Country </label>
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="country" id="country">
+                        <option value="" selected>Select Country</option>
+                    </select>
+                </td>
+                <td>
+                    <span class="country"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="state">State </label>
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="state" id="stat">
+                        <option value="" selected>Select Country first</option>
+                    </select>
+                </td>
+                <td>
+                    <span class="state"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="ciyt">City </label>
+                </td>
+                <td>: </td>
+                <td>
+                    <select name="city" id="city">
+                        <option value="" selected>Select State first</option>
+                    </select>
+
+                </td>
+                <td>
+                    <span class="city"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <input type="button" onclick="validation()" value="submit">
+                    <input type="button" value="reset" onclick="resetFunction()">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br><br>
+    <script src="./script.js"></script>
+</body>
+
+</html>

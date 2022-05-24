@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <script>
+        const username = sessionStorage.getItem('user');
+        const login = sessionStorage.getItem('login');
+
+        if (username != "" && login == true) {
+            window.location.href = "./login.html";
+        } 
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <form>
+            <table>
+                <tr>
+                    <td><label for="username">Username </label></td>
+                    <td>:</td>
+                    <td><input type="text" name="username" id="username"></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">Password </label></td>
+                    <td>:</td>
+                    <td><input type="password" name="pass" id="pass"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="button" value="sing in" onclick="singIn();">
+                        <input type="button" value="sing up" onclick="singUp();">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script>
+        const singIn = () => {
+
+            window.location.href = "./login.html";
+        }
+
+        const singUp = () => {
+            window.location.href = "./singUp.html";
+        }
+
+    </script>
+</body>
+
+</html>
