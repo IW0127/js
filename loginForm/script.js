@@ -49,38 +49,47 @@ const validation = () => {
     const country = formData.get("country");
     const state = formData.get("state");
     const city = formData.get("city");
-    const all = { username, pNumber, email, gender, hobbies, country, state, city };
-    console.log(all);
+    const data = { username, pNumber, email, gender, hobbies, country, state, city };
 
+    let error = [];
+    console.log(data);
+    //username
     if (username != "") {
         const regExp = /^[a-zA-Z]+$/;
         const user = regExp.test(username);
         if (user == false) {
             document.querySelector(".username").innerHTML = "space and Number Not allowed!";
+            error.push(0);
+            console.log(error);
         } else {
             document.querySelector(".username").innerHTML = "";
         }
     } else {
         document.querySelector(".username").innerHTML = "Please fill Username.";
-
+        error.push(0);
     }
 
+    // Phone number
     if (pNumber != "") {
         const regExp = /^\+?([0-9]{2})?[ ]?([0-9]{10})$/
         if (!pNumber.match(regExp)) {
             document.querySelector(".pNumber").innerHTML = "Invalid Your Phone Number.";
+            error.push(0);
         } else {
             document.querySelector(".pNumber").innerHTML = "";
         }
     } else {
         document.querySelector(".pNumber").innerHTML = "Please fill Phone Number.";
+        error.push(0);
     }
 
 
+    //email
     if (email != "") {
         const regExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!regExp.test(email)) {
             document.querySelector(".email").innerHTML = "Invalid Email.";
+            error.push(0);
 
         } else {
             document.querySelector(".email").innerHTML = "";
@@ -88,24 +97,54 @@ const validation = () => {
         }
     } else {
         document.querySelector(".email").innerHTML = "Please fill Email.";
+        error.push(0);
 
     }
 
+    // gender
     if ((gender != null)) {
         document.querySelector(".gender").innerHTML = "";
     } else {
+        error.push(0);
         document.querySelector(".gender").innerHTML = "Specify Your Gender.";
-        console.log("yes");
     }
 
+    // hobbies
     if (hobbies != "") {
         document.querySelector(".hobbies").innerHTML = "";
     } else {
+        error.push(0);
         document.querySelector(".hobbies").innerHTML = "Specify Your hobbies.";
     }
-    if (hobbies != "") {
-        document.querySelector(".hobbies").innerHTML = "";
+
+    // country
+    if (country != "") {
+        document.querySelector(".country").innerHTML = "";
     } else {
-        document.querySelector(".hobbies").innerHTML = "Specify Your hobbies.";
+        error.push(0);
+        document.querySelector(".country").innerHTML = "Specify Your country.";
+    }
+
+    // state
+    if (state != "") {
+        document.querySelector(".state").innerHTML = "";
+    } else {
+        error.push(0);
+        document.querySelector(".state").innerHTML = "Specify Your country.";
+    }
+
+    //city
+    if (city != "") {
+        document.querySelector(".city").innerHTML = "";
+    } else {
+        error.push(0);
+        document.querySelector(".city").innerHTML = "Specify Your country.";
+    }
+
+
+    if (error == "") {
+        const json = JSON.stringify(data);
+        localStorage.setItem(username, json);
     }
 }
+
