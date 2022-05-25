@@ -8,9 +8,9 @@
     <title>Validation</title>
     <script>
         const username = sessionStorage.getItem('user');
-        const login = sessionStorage.getItem('login');
+        const login = sessionStorage.getItem('log');
 
-        if (username != "" && login == true) {
+        if (username != "" && login == 'true') {
             window.location.href = "./login.html";
         } 
     </script>
@@ -74,6 +74,26 @@
                 <td></td>
                 <td>
                     <span class="email"></span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label for="Password">Password <span>*</span></label>
+                </td>
+                <td>:</td>
+
+                <td>
+                    <input type="password" name="Password" id="Password">
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <span class="Password"></span>
                 </td>
             </tr>
 
@@ -200,6 +220,7 @@
             </tr>
         </table>
     </form>
+    <div class="ans"></div>
     <br><br>
     <script src="./script.js"></script>
 </body>

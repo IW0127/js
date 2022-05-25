@@ -8,27 +8,40 @@
     <title>Login Form</title>
     <script>
         const username = sessionStorage.getItem('user');
-        const login = sessionStorage.getItem('login');
-
-        if (username != "" && login == true) {
+        const login = sessionStorage.getItem('log');
+        console.log(username);
+        console.log(login);
+        if (username != "" && login == 'true') {
             window.location.href = "./login.html";
-        } 
+        } /* else {
+            sessionStorage.setItem('user', '');
+            sessionStorage.setItem('log', false);
+            console.log("yes");
+        } */
     </script>
 </head>
 
 <body>
     <div class="box">
-        <form>
+        <form name="login">
             <table>
                 <tr>
                     <td><label for="username">Username </label></td>
                     <td>:</td>
                     <td><input type="text" name="username" id="username"></td>
                 </tr>
+
                 <tr>
                     <td><label for="pass">Password </label></td>
                     <td>:</td>
                     <td><input type="password" name="pass" id="pass"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <span class="userPass" style="color: red;"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -41,18 +54,7 @@
             </table>
         </form>
     </div>
-
-    <script>
-        const singIn = () => {
-
-            window.location.href = "./login.html";
-        }
-
-        const singUp = () => {
-            window.location.href = "./singUp.html";
-        }
-
-    </script>
+    <script src="./action.js"></script>
 </body>
 
 </html>

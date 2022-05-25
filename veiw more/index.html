@@ -24,7 +24,7 @@
                 <div class="num">8</div>
                 <div class="num">9</div>
                 <div class="num">10</div>
-                <div class="num">11</div>
+                <!-- <div class="num">11</div> -->
             </div>
             <button class="Next">View More</button>
         </div>
@@ -45,28 +45,9 @@
         </div>
     </div>
     <h2 id="number">0</h2>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <!-- <script src="./script.js"></script>
-    <script src="./action.js"></script> -->
+    <script src="./script.js"></script>
+    <!-- <script src="./action.js"></script> -->
     <script>
-
-        const num = document.getElementById("number");
-        num.addEventListener('onnumber', e => {
-            num.textContent = e.detail.number;
-            num.setAttribute('style', `color:${e.detail.textColor}`);
-        });
-
-        const changNum = (n, c) => {
-            const event = new CustomEvent('onnumber', {
-                detail: {
-                    number: n,
-                    textColor: c
-                }
-            });
-            num.dispatchEvent(event);
-        }
-        changNum(3, "#fff");
-
 
         // let a = { d: 1, a: 2, b: 2 };
         // Object.keys(a).map((k, v, arr) => console.log(k, v, arr));

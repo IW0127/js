@@ -25,9 +25,44 @@ number.forEach(nu => {
 });
 num.forEach(e => {
     e.addEventListener('click', () => {
-        while (e = e.previousElementSibling) {
-            e.setAttribute("style", "display:none;");
+        let k = 1;
+        // while (e = e.nextElementSibling) {
+        //     console.log(e);
+        //     e.setAttribute("style", "display:block;");
+
+        //     if (k == 2)
+        //         break;
+        //     k++;
+
+        // }
+        let i = 1;
+        let l = e;
+        while ((e = e.previousElementSibling) && (l = l.nextElementSibling)) {
+            if (l) {
+                l.setAttribute("style", "display:block;");
+
+            }
+            if (e) {
+                e.setAttribute("style", "display:none;");
+
+                console.log(e, "none");
+                console.log(l, "block");
+
+                // if (e.previousElementSibling.style.display == 'none') {
+                //     e.previousElementSibling.previousElementSibling.setAttribute("style", "display:none;");
+                // } else {
+                //     e.previousElementSibling.previousElementSibling.setAttribute("style", "display:none;");
+                //     console.log("yes");
+                // }
+            }
+
+            // l.setAttribute("style", "display:block;");
+            if (i == 2)
+                break;
+            i++;
+
         }
+
     });
 });
 

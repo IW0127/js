@@ -44,15 +44,15 @@ const validation = () => {
     const username = formData.get("username");
     const pNumber = formData.get('pNumber');
     const email = formData.get("email");
+    const Password = btoa(formData.get("Password"));
     const gender = formData.get("gender");
     const hobbies = formData.getAll("hobbies");
     const country = formData.get("country");
     const state = formData.get("state");
     const city = formData.get("city");
-    const data = { username, pNumber, email, gender, hobbies, country, state, city };
+    const data = { username, pNumber, email, Password, gender, hobbies, country, state, city };
 
     let error = [];
-    console.log(data);
     //username
     if (username != "") {
         const regExp = /^[a-zA-Z]+$/;
@@ -62,7 +62,20 @@ const validation = () => {
             error.push(0);
             console.log(error);
         } else {
-            document.querySelector(".username").innerHTML = "";
+            if (localStorage.user != undefined) {
+                let jsonD = JSON.parse(localStorage.user);
+
+                for (let x of jsonD) {
+                    if (x.username == username) {
+                        console.log(x.username);
+                        document.querySelector(".username").innerHTML = "Not Available";
+                        error.push(0);
+                        break;
+                    } else {
+                        document.querySelector(".username").innerHTML = "";
+                    }
+                }
+            }
         }
     } else {
         document.querySelector(".username").innerHTML = "Please fill Username.";
@@ -93,14 +106,18 @@ const validation = () => {
 
         } else {
             document.querySelector(".email").innerHTML = "";
-
         }
     } else {
         document.querySelector(".email").innerHTML = "Please fill Email.";
         error.push(0);
 
     }
-
+    if ((Password != "")) {
+        document.querySelector(".Password").innerHTML = "";
+    } else {
+        error.push(0);
+        document.querySelector(".Password").innerHTML = "Specify Your Password.";
+    }
     // gender
     if ((gender != null)) {
         document.querySelector(".gender").innerHTML = "";
@@ -143,8 +160,17 @@ const validation = () => {
 
 
     if (error == "") {
-        const json = JSON.stringify(data);
-        localStorage.setItem(username, json);
+        if (localStorage.user) {
+            let oldData = JSON.parse(localStorage.user);
+            let newData = JSON.stringify(oldData.concat(data));
+            localStorage.setItem('user', newData);
+            window.location.href = "./";
+        } else {
+            let json = JSON.stringify([data]);
+            localStorage.setItem('user', json);
+        }
     }
+
 }
+
 

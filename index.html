@@ -17,26 +17,42 @@
         <label>Enter the B:</label>
         <input type="number" name="b" id="b">
         <br><br>
-        <input type="button" value="submit" id="subBtn">
+        <input type="button" value="+" onclick="add()">
+        <input type="button" value="-" onclick="sub()">
+        <input type="button" value="/" onclick="div()">
+        <input type="button" value="X" onclick="mul()">
     </form>
+    <br><br>
     <div id="ans"></div>
     <script>
-        const submit = document.querySelector("#subBtn");
         const a = document.querySelector("#a");
         const b = document.querySelector("#b");
-        submit.addEventListener("click", () => {
-            const sum = a.value + b.value;
-            const sub = a.value - b.value;
-            const mul = a.value * b.value;
-            const div = a.value / b.value;
-            document.querySelector("#ans").innerHTML = `
-            <p>sum: ${sum}</p>
-            <p>sum: ${sub}</p>
-            <p>sum: ${mul}</p>
-            <p>sum: ${div}</p>`;
-            a.value = "";
-            b.value = "";
-        });
+
+        let add = () => {
+            if (a.value != "" && b.value != "") {
+                const sum = (a.value * 1) + (b.value * 1);
+                document.querySelector("#ans").innerHTML = sum;
+            }
+        }
+        let sub = () => {
+            if (a.value != "" && b.value != "") {
+                const sum = (a.value * 1) - (b.value * 1);
+                document.querySelector("#ans").innerHTML = sum;
+            }
+        }
+        let div = () => {
+            if (a.value != "" && b.value != "") {
+                const sum = (a.value * 1) / (b.value * 1);
+                document.querySelector("#ans").innerHTML = sum;
+            }
+        }
+        let mul = () => {
+            if (a.value != "" && b.value != "") {
+                const sum = (a.value * 1) * (b.value * 1);
+                document.querySelector("#ans").innerHTML = sum;
+            }
+        }
+
     </script>
 </body>
 
