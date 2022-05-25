@@ -9,7 +9,10 @@ const countryStateCity = {
         'Assam': ['Silchar', 'Dibrugarh', 'Jorhat', 'Nagaon'],
         'Goa': ['Aldona', 'Anjuna', 'Aquem'],
         'Himachal Pradesh': ['Shimla', 'Dharamsala', 'Solan', 'Mandi']
-    }
+    }, 'CANADA': {
+        'Torrento': ['Torrento1', 'Torrento2', 'Torrento3'],
+        'Ontario': ['ontario1', 'ontario2', 'ontario3'],
+    },
 };
 window.onload = () => {
     const countrySel = document.myForm.country;
@@ -26,7 +29,7 @@ window.onload = () => {
             stateSel[stateSel.options.length] = new Option(states, states);
         }
     }
-    countrySel.onchange();
+    // countrySel.onchange();
     stateSel.onchange = () => {
         citySel.length = 1;
         i = 0;
@@ -36,6 +39,29 @@ window.onload = () => {
             i++;
         }
     }
+    // console.log(countryStateCity.Object.keys(countryStateCity))
+    Object.keys(countryStateCity).forEach(k => {
+        // console.log(countryStateCity.Object.keys(countryStateCity. + ` { k }`))
+    })
+    countrySel.onchange = () => {
+        stateSel.length = 1;
+        citySel.length = 1;
+
+        for (let i = 0; i < Object.keys(countryStateCity).length; i++) {
+            console.log(Object.keys(countryStateCity)[i]);
+
+        }
+    }
+
+    stateSel.onchange = () => {
+        citySel.length = 1;
+        i = 0;
+        while (i < countryStateCity[countrySel.value[stateSel]]) {
+            console.log(countryStateCity[countrySel.value[stateSel]]);
+            i++;
+        }
+    }
+    // countrySel.onchange();
 }
 
 const validation = () => {

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         const username = sessionStorage.getItem('user');
         const login = sessionStorage.getItem('log');
@@ -22,21 +23,15 @@
 </head>
 
 <body>
-    <form action="" method="post" name="myForm">
+    <form action="" method="post" name="myForm" class="myform">
         <table>
             <tr>
-                <td>
+                <td style="width:30%;">
                     <label for="username">Username <span>*</span></label>
                 </td>
-                <td>:</td>
-                <td>
-                    <input type="text" name="username" id="username">
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
+                <td style="width:5%;">:</td>
+                <td style="width:75%;">
+                    <input type="text" name="username" id="username"><br><br>
                     <span class="username"></span>
                 </td>
             </tr>
@@ -47,16 +42,10 @@
                 <td>:</td>
                 <td>
                     <input type="tel" name="pNumber" id="pNumber" placeholder="+91 9913189469">
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
+                    <br><br>
                     <span class="pNumber"></span>
                 </td>
             </tr>
-
 
             <tr>
                 <td>
@@ -66,17 +55,12 @@
 
                 <td>
                     <input type="text" name="email" id="email">
-                </td>
+                    <br><br>
 
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
                     <span class="email"></span>
                 </td>
-            </tr>
 
+            </tr>
 
             <tr>
                 <td>
@@ -86,15 +70,10 @@
 
                 <td>
                     <input type="password" name="Password" id="Password">
-                </td>
-
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
+                    <br><br>
                     <span class="Password"></span>
                 </td>
+
             </tr>
 
 
@@ -110,15 +89,10 @@
                     <label for="male">male</label>
                     <input type="radio" name="gender" id="female" value="female">
                     <label for="female">female</label>
-                </td>
-
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
+                    <br><br>
                     <span class="gender"></span>
                 </td>
+
             </tr>
 
 
@@ -130,17 +104,13 @@
                 <td>:</td>
                 <td>
                     <input type="checkbox" name="hobbies" id="drawing" value="drawing">
-                    <label for="drawing">drawing</label>
+                    <label for="drawing">Drawing</label>
                     <input type="checkbox" name="hobbies" id="singing" value="singing">
                     <label for="singing">singing</label>
                     <input type="checkbox" name="hobbies" id="dancing" value="dancing">
                     <label for="dancing">dancing</label>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
+                    <br><br>
+
                     <span class="hobbies"></span>
                 </td>
             </tr>
@@ -155,18 +125,11 @@
                     <select name="country" id="country">
                         <option value="" selected>Select Country</option>
                     </select>
-                </td>
-
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
+                    <br><br>
                     <span class="country"></span>
                 </td>
+
             </tr>
-
-
 
             <tr>
                 <td>
@@ -177,16 +140,12 @@
                     <select name="state" id="stat">
                         <option value="" selected>Select Country first</option>
                     </select>
+                    <br><br>
+                    <span class="state"></span>
                 </td>
 
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <span class="state"></span>
-                </td>
-            </tr>
+
 
 
             <tr>
@@ -198,16 +157,12 @@
                     <select name="city" id="city">
                         <option value="" selected>Select State first</option>
                     </select>
+                    <br><br>
+                    <span class="city"></span>
 
                 </td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <span class="city"></span>
-                </td>
-            </tr>
+
 
 
             <tr>
@@ -215,7 +170,6 @@
                 <td></td>
                 <td>
                     <input type="button" onclick="validation()" value="submit">
-                    <input type="button" value="reset" onclick="resetFunction()">
                 </td>
             </tr>
         </table>
