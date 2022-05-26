@@ -1,4 +1,3 @@
-
 const countryStateCity = {
     'US': {
         'California': ['Los Angeles', 'San Diego', 'San Jose', 'San Francisco', 'Fresno'],
@@ -12,7 +11,7 @@ const countryStateCity = {
     }, 'CANADA': {
         'Torrento': ['Torrento1', 'Torrento2', 'Torrento3'],
         'Ontario': ['ontario1', 'ontario2', 'ontario3'],
-    },
+    }
 };
 window.onload = () => {
     const countrySel = document.myForm.country;
@@ -22,47 +21,36 @@ window.onload = () => {
     for (let cou in countryStateCity) {
         countrySel[countrySel.options.length] = new Option(cou, cou);
     }
+
     countrySel.onchange = () => {
         stateSel.length = 1;
         citySel.length = 1;
-        for (let states in countryStateCity[countrySel.value]) {
-            stateSel[stateSel.options.length] = new Option(states, states);
+        Object.entries(countryStateCity).forEach(([k, l]) => console.log(k, l))
+        for (let [key, value] of Object.entries(countryStateCity)) {
+            if (key == countrySel.value) {
+                for (let [k, v] of Object.entries(value)) {
+                    stateSel[stateSel.options.length] = new Option(k, k);
+                }
+            }
         }
-    }
-    // countrySel.onchange();
-    stateSel.onchange = () => {
-        citySel.length = 1;
-        i = 0;
-        const district = countryStateCity[countrySel.value][stateSel.value];
-        while (i < district.length) {
-            citySel[citySel.options.length] = new Option(district[i], district[i]);
-            i++;
-        }
-    }
-    // console.log(countryStateCity.Object.keys(countryStateCity))
-    Object.keys(countryStateCity).forEach(k => {
-        // console.log(countryStateCity.Object.keys(countryStateCity. + ` { k }`))
-    })
-    countrySel.onchange = () => {
-        stateSel.length = 1;
-        citySel.length = 1;
 
-        for (let i = 0; i < Object.keys(countryStateCity).length; i++) {
-            console.log(Object.keys(countryStateCity)[i]);
-
-        }
     }
+
+
 
     stateSel.onchange = () => {
         citySel.length = 1;
         i = 0;
-        while (i < countryStateCity[countrySel.value[stateSel]]) {
-            console.log(countryStateCity[countrySel.value[stateSel]]);
+        console.clear()
+        let dis = countryStateCity[countrySel.value][stateSel.value];
+        while (i < dis.length) {
+            citySel[citySel.options.length] = new Option(dis[i], dis[i]);
+
             i++;
         }
     }
     // countrySel.onchange();
-}
+};
 
 const validation = () => {
 
@@ -139,7 +127,12 @@ const validation = () => {
 
     }
     if ((Password != "")) {
-        document.querySelector(".Password").innerHTML = "";
+        let regExp = /.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
+        if (!regExp.test(Password)) {
+            document.querySelector(".Password").innerHTML = "Invalid Password (8 and more then 20 character must be include.)";
+        } else {
+            document.querySelector(".Password").innerHTML = "";
+        }
     } else {
         error.push(0);
         document.querySelector(".Password").innerHTML = "Specify Your Password.";
@@ -195,8 +188,30 @@ const validation = () => {
             let json = JSON.stringify([data]);
             localStorage.setItem('user', json);
         }
+        document.myForm.reset();
     }
 
 }
 
 
+
+// countrySel.onchange = () => {
+//     stateSel.length = 1;
+//     citySel.length = 1;
+//     for (let states in countryStateCity[countrySel.value]) {
+//         stateSel[stateSel.options.length] = new Option(states, states);
+//     }
+// }
+// countrySel.onchange();
+// stateSel.onchange = () => {
+//     citySel.length = 1;
+//     i = 0;
+//     const district = countryStateCity[countrySel.value][stateSel.value];
+//     while (i < district.length) {
+//         citySel[citySel.options.length] = new Option(district[i], district[i]);
+//         i++;
+//     }
+// }
+
+
+const loginPag = () => { window.location.href = "./" }

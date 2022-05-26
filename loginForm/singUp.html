@@ -7,19 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation</title>
     <link rel="stylesheet" href="style.css">
+    <script src="./session.js"></script>
     <script>
-        const username = sessionStorage.getItem('user');
-        const login = sessionStorage.getItem('log');
-
-        if (username != "" && login == 'true') {
-            window.location.href = "./login.html";
-        } 
-    </script>
-    <style>
-        span {
-            color: #ff0000;
+        if (i) {
+            window.location.href = "./";
         }
-    </style>
+    </script>
 </head>
 
 <body>
@@ -169,7 +162,8 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <input type="button" onclick="validation()" value="submit">
+                    <input type="button" onclick="validation()" value="Sing Up">
+                    <input type="button" onclick="loginPag()" value="Sing In">
                 </td>
             </tr>
         </table>

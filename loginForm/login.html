@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <script src="./session.js"></script>
+    <script>
+        if (!i) {
+            window.location.href = "./";
+        }
+    </script>
 </head>
 
 <body>
@@ -14,8 +19,8 @@
     <input type="button" value="Log Out" onclick="logOut();">
     <script>
         const logOut = () => {
-            sessionStorage.setItem('user', "");
-            // sessionStorage.setItem('log', false);
+            let loginUpdateSession = { "userId": "", "log": false };
+            sessionStorage.setItem('user', JSON.stringify(loginUpdateSession));
             window.location.href = './';
         }
     </script>
