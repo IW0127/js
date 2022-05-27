@@ -62,13 +62,23 @@
                 <td>:</td>
 
                 <td>
-                    <input type="password" name="Password" id="Password">
+                    <input type="password" onkeyup="pwd();" onfocus="showVal();" onblur="hideVal();" name="Password"
+                        id="Password">
                     <br><br>
                     <span class="Password"></span>
                 </td>
 
             </tr>
-
+            <tr class="pass">
+                <td></td>
+                <td></td>
+                <td>
+                    <span class="PasswordUpper">A uppercase and lowercase letter</span><br>
+                    <span class="PasswordSpecial ">A special characters</span><br>
+                    <span class="PasswordNumber ">A number</span><br>
+                    <span class="PasswordCharacter ">Minimum 8 characters</span>
+                </td>
+            </tr>
 
             <tr>
                 <td>

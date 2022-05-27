@@ -25,7 +25,6 @@ window.onload = () => {
     countrySel.onchange = () => {
         stateSel.length = 1;
         citySel.length = 1;
-        Object.entries(countryStateCity).forEach(([k, l]) => console.log(k, l))
         for (let [key, value] of Object.entries(countryStateCity)) {
             if (key == countrySel.value) {
                 for (let [k, v] of Object.entries(value)) {
@@ -36,22 +35,56 @@ window.onload = () => {
 
     }
 
-
-
     stateSel.onchange = () => {
         citySel.length = 1;
         i = 0;
-        console.clear()
         let dis = countryStateCity[countrySel.value][stateSel.value];
         while (i < dis.length) {
             citySel[citySel.options.length] = new Option(dis[i], dis[i]);
-
             i++;
         }
     }
     // countrySel.onchange();
+    /*  document.querySelector('.pass').style.display = "none"; */
 };
 
+const showVal = () => {
+    document.querySelector('.pass').style = "";
+}
+
+const hideVal = () => {
+    document.querySelector('.pass').style.display = "none";
+}
+hideVal();
+const Password = document.querySelector("#Password");
+let e = [];
+function pwd() {
+    e = [];
+    if (/[A-Z]/g.test(Password.value) && /[a-z]/g.test(Password.value)) {
+        document.querySelector(".PasswordUpper").style.color = "green";
+    } else {
+        document.querySelector(".PasswordUpper").style.color = "red";
+        e.push(0);
+    }
+    if (/[!@#$%^&*_]/g.test(Password.value)) {
+        document.querySelector(".PasswordSpecial").style.color = "green";
+    } else {
+        document.querySelector(".PasswordSpecial").style.color = "red";
+        e.push(0);
+    }
+    if (/[0-9]/g.test(Password.value)) {
+        document.querySelector(".PasswordNumber").style.color = "green";
+    } else {
+        document.querySelector(".PasswordNumber").style.color = "red";
+        e.push(0);
+    }
+    if (Password.value.length >= 8) {
+        document.querySelector(".PasswordCharacter").style.color = "green";
+    } else {
+        document.querySelector(".PasswordCharacter").style.color = "red";
+        e.push(0);
+    }
+}
 const validation = () => {
 
     const formData = new FormData(myForm);
@@ -64,9 +97,9 @@ const validation = () => {
     const country = formData.get("country");
     const state = formData.get("state");
     const city = formData.get("city");
-    const data = { username, pNumber, email, Password, gender, hobbies, country, state, city };
-
+    const data = { username, pNumber, email, gender, hobbies, country, state, city };
     let error = [];
+
     //username
     if (username != "") {
         const regExp = /^[a-zA-Z]+$/;
@@ -111,7 +144,7 @@ const validation = () => {
     }
 
 
-    //email
+    /* email */
     if (email != "") {
         const regExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!regExp.test(email)) {
@@ -126,18 +159,26 @@ const validation = () => {
         error.push(0);
 
     }
-    if ((Password != "")) {
-        let regExp = /.*^(?=.{8,20})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
-        if (!regExp.test(Password)) {
-            document.querySelector(".Password").innerHTML = "Invalid Password (8 and more then 20 character must be include.)";
+    let pass = atob(Password);
+
+    if (pass) {
+        if (e == "") {
+            if (/[^\S]/g.test(pass)) {
+                document.querySelector(".Password").innerHTML = "Space Not Allowed.";
+                error.push(0);
+            } else {
+                document.querySelector(".Password").innerHTML = "";
+            }
         } else {
-            document.querySelector(".Password").innerHTML = "";
+            document.querySelector(".Password").innerHTML = "Password Invalid.";
         }
     } else {
-        error.push(0);
-        document.querySelector(".Password").innerHTML = "Specify Your Password.";
+        document.querySelector(".Password").innerHTML = "Please fill Password.";
     }
-    // gender
+
+
+    /* gender */
+
     if ((gender != null)) {
         document.querySelector(".gender").innerHTML = "";
     } else {
@@ -215,3 +256,12 @@ const validation = () => {
 
 
 const loginPag = () => { window.location.href = "./" }
+
+
+
+// for (let i = 22; i < 30; i++) {
+//     for (let j = 1; j < 10; j++) {
+
+//     }
+
+// }
