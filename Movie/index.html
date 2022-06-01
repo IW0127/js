@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket</title>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="movie">
+        <div class="massage">Offer Closes Soon Hurry Up!!</div>
+        <div class="error">Offer Close</div>
+        <div class="timer">
+            <div class="timeBox">
+                <div class="day">0</div>
+                <label>Days</label>
+            </div>
+            <div class="timeBox">
+                <div class="hour">0</div>
+                <label>Hours</label>
+            </div>
+
+            <div class="timeBox">
+                <div class="min">0</div>
+                <label>Minutes</label>
+            </div>
+            <div class="timeBox">
+                <div class="sec">0</div>
+                <label>Seconds</label>
+            </div>
+        </div>
+        <div class="ticketBox">
+            <div class="fullDetail">
+                <div class="moviePic">
+                    <img src="./images.jfif" alt="">
+                </div>
+                <div class="detail">
+                    <div class="movieName">
+                        <div class="mName">Doctor strange</div>
+                        <label>Movie</label>
+                    </div>
+                    <div class="movieTime">
+                        <div class="mTime">2:23</div>
+                        <label>Time</label>
+                    </div>
+                    <div class="ticketPrice">
+                        <div class="price">₹340 <span class="discount">(50% discount)</span></div>
+
+                        <label>Price</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="setNumber">
+                <div class="Number">
+                    <div>123</div>
+                    <label>Seat</label>
+                </div>
+                <input type="button" value="Book Now" id="bookNow" onclick="bookTicket()">
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+
+<body>
+    <label for="NumberOne">Enter First Number : </label>
+    <input type="number" name="NumberOne" id="NumberOne"><br><br>
+
+    <label for="NumberSecond">Enter Second Number : </label>
+    <input type="number" name="NumberSecond" id="NumberSecond"><br><br>
+
+    <input type="button" value="+" id="sum" onclick="cal('sum');">
+    <input type="button" value="-" id="sub" onclick="cal('sub');">
+    <input type="button" value="X" id="mul" onclick="cal('mul');">
+    <input type="button" value="÷" id="div" onclick="cal('div');">
+    <br><br>
+    <div id="total"></div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

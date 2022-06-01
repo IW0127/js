@@ -1,0 +1,153 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'El Messiri', sans-serif;
+    font-weight: bold;
+}
+
+.movie {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: antiquewhite;
+    border-radius: 30px;
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+}
+
+
+.massage {
+    color: #482aa5;
+    border-bottom: 2px dashed #ab9696;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.error {
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ff0000;
+    color: #fff;
+    display: none;
+}
+
+.timer {
+    display: flex;
+    margin: 25px auto;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.timer .timeBox {
+    background-color: #fff;
+    padding: 20px 0;
+    margin: 0 6px;
+    width: 95px;
+    border-radius: 19px;
+}
+
+
+.ticketBox {
+    display: flex;
+    width: 70%;
+    background-color: #e84c3d;
+    border-radius: 10px;
+    color: #2d2a56;
+}
+
+.timeBox label {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    color: #7a7979;
+    /*  letter-spacing: 1px; */
+}
+
+.ticketBox .fullDetail {
+    display: flex;
+    width: 75%;
+    border-radius: 10px;
+    height: 200px;
+}
+
+.fullDetail .moviePic {
+    width: 40%;
+    height: 100%;
+    border-radius: 10px 0px 0 10px;
+    background-color: #000;
+}
+
+.fullDetail .moviePic img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px 0px 0 10px;
+}
+
+.fullDetail .detail {
+    padding: 10px;
+    width: 60%;
+    margin: auto;
+}
+
+.ticketBox label {
+    font-family: 'Space Mono', monospace;
+    font-weight: 400;
+    color: #e3dfdf;
+    letter-spacing: 3px;
+}
+
+.setNumber {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    border-left: 2px dashed #fff;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+}
+
+.setNumber::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -1px;
+    left: -10px;
+    background-color: #faebd7;
+    clip-path: circle(50% at 50% 0%);
+}
+
+.setNumber::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: -1px;
+    left: -10px;
+    background-color: #faebd7;
+    clip-path: circle(50% at 50% 100%);
+}
+
+#bookNow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 15px 0;
+    padding: 3px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #423333;
+    color: #fff;
+}

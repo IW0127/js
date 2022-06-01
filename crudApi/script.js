@@ -71,38 +71,19 @@ console.log('-------delete data-------');
 DeleteData();
  */
 
-
-/* 
-// get data
-
-fetch('https://jsonplaceholder.typicode.com/posts/')
-    .then(Response => Response.json())
-    .then(result => console.log(result))
-    .catch(error => console.log(error)); */
-
-
-/* fetch('https://jsonplaceholder.typicode.com/posts/', {
-    method: 'POST',
-    body: data,
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    }
-})
-    .then(Response => Response.json())
-    .then(result => console.log(result))
-    .catch(error => console.log(error)); */
-
-
 const fetchData = (method, url, data) => {
     fetch(url, {
         method,
         body: data,
         headers: {
-            "Content-type": "application/json; charset=UTF-9"
+            "Content-type": "application/json; charset=UTF-8"
         }
     })
         .then(Response => Response.json())
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(`-----${method}-----`);
+            console.log(result);
+        })
         .catch(error => console.log("THIS IS ERROR => ", error));
 
 }
@@ -110,17 +91,17 @@ const fetchData = (method, url, data) => {
 
 const fetchGet = () => {
     fetchData('GET', 'https://jsonplaceholder.typicode.com/todos/');
-}
+};
 
 const fetchPost = () => {
-
     let data = JSON.stringify({
         title: 'foo',
         body: 'bar',
         userId: 1
     });
     fetchData('POST', 'https://jsonplaceholder.typicode.com/posts/', data);
-}
+};
+
 const fetchPut = () => {
     let data = JSON.stringify({
         id: 1,
@@ -129,11 +110,18 @@ const fetchPut = () => {
         userId: 1
     });
     fetchData('PUT', 'https://jsonplaceholder.typicode.com/posts/1', data);
-}
+};
+
 const fetchDelete = () => {
     fetchData('DELETE', 'https://jsonplaceholder.typicode.com/posts/101');
-}
+};
+
 
 fetchGet();
 
+fetchPost();
+
 fetchPut();
+
+fetchDelete();
+

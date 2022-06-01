@@ -16,12 +16,41 @@
 
 <body>
     <h1>Welcome</h1>
+    <div id="userDetail">
+
+    </div>
     <input type="button" value="Log Out" onclick="logOut();">
     <script>
         const logOut = () => {
             let loginUpdateSession = { "userId": "", "log": false };
             sessionStorage.setItem('user', JSON.stringify(loginUpdateSession));
             window.location.href = './';
+        }
+
+        // session Storage
+        let user = sessionStorage.getItem('user');
+        let jsonDataSession = JSON.parse(user);
+        let username = atob(jsonDataSession.userId);
+
+        /* localStorage */
+        let userDetail = localStorage.getItem('user');
+        let jsonUser = JSON.parse(userDetail);
+        console.log(jsonUser);
+
+        let showDetail = document.getElementById("userDetail");
+        for (userD of jsonUser) {
+            if (username == userD.username) {
+                showDetail.innerHTML = `
+                <p>Your Username is : ${userD.username}</p>
+                <p>Your Email is : ${userD.email}</p>
+                <p>Your Mobile Number is : ${userD.pNumber}</p>
+                <p>Your gender is : ${userD.gender}</p>
+                <p>Your hobbies is : ${userD.hobbies}</p>
+                <p>Your country is : ${userD.country}</p>
+                <p>Your state is : ${userD.state}</p>
+                <p>Your city is : ${userD.city}</p>
+            `;
+            }
         }
     </script>
 </body>

@@ -97,7 +97,7 @@ const validation = () => {
     const country = formData.get("country");
     const state = formData.get("state");
     const city = formData.get("city");
-    const data = { username, pNumber, email, gender, hobbies, country, state, city };
+    const data = { username, pNumber, email, Password, gender, hobbies, country, state, city };
     let error = [];
 
     //username
