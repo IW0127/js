@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: antiquewhite;
+    background-color: #ffe6e6;
     border-radius: 30px;
     width: 40%;
     position: absolute;
@@ -38,6 +38,7 @@
     background-color: #ff0000;
     color: #fff;
     display: none;
+    margin: 10px auto;
 }
 
 .timer {

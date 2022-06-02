@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <h1>Hello</h1>
+    <p id="demo"></p>
+    <script>
+        let y = Myfunction('a', 'z');
+        function Myfunction(num, snum) {
+            let l = [];
+            if (typeof num === 'number' && typeof snum === 'number') {
+                for (i = num; i <= snum; i++) {
+                    l.push(i);
+                }
+            }
+            else if (typeof num === 'string' && typeof snum === 'string') {
+                for (i = num.charCodeAt(); i <= snum.charCodeAt(); i++) {
+                    l.push(String.fromCharCode(i));
+                }
+            }
+            else if (typeof num === 'string' || typeof snum === 'number') {
+                for (i = num.charCodeAt(); i <= num.charCodeAt() + snum; i++) {
+                    l.push(String.fromCharCode(i));
+                }
+            }
+            else {
+                l.push('wrong');
+            }
+            return l;
+        }
+
+        document.getElementById("demo").innerHTML = y;
+    </script>
+</head>
+
+</html>

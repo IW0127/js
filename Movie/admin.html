@@ -9,25 +9,33 @@
 </head>
 
 <body>
-    <form method="post" id="timeFun">
+    <form method="post" id="timeFun" name="timeFun">
         <label for="days">Days</label>
-        <input type="number" name="days" id="days" value="0"><br><br>
+        <input type="number" name="days" id="days" value="0" min="0" max="5"><br><br>
         <label for="hours">Hours</label>
-        <input type="number" name="hours" id="hours" value="0"><br><br>
+        <input type="number" name="hours" id="hours" value="0" min="0" max="23"><br><br>
         <label for="minutes">Minutes</label>
-        <input type="number" name="minutes" id="minutes" value="0"><br><br>
+        <input type="number" name="minutes" id="minutes" value="0" min="0" max="60"><br><br>
         <label for="seconds">Seconds</label>
-        <input type="number" name="seconds" id="seconds" value="0"><br><br>
-        <input type="button" value="submit" onclick="timeOffer();">
+        <input type="number" name="seconds" id="seconds" value="0" min="0" max="60"><br><br>
+        <input type="submit" value="submit" onclick="timeOffer();">
     </form>
 </body>
 <script>
 
     const timeOffer = () => {
-        let timeData = new FormData(timeFun);
-        console.log({ ...timeData });
-        Object.keys(timeData);
-        localStorage.setItem('time', '');
+        const data = Object.fromEntries(new FormData(timeFun).entries());
+        console.log(data);
+        localStorage.setItem('time', JSON.stringify(data));
+        // if (data.days >=)
+    }
+    let timer = JSON.parse(window.localStorage.time);
+    console.log(timer)
+    if (timer) {
+        document.timeFun.days.value = timer.days;
+        document.timeFun.hours.value = timer.hours;
+        document.timeFun.minutes.value = timer.minutes;
+        document.timeFun.seconds.value = timer.seconds;
     }
 
 </script>
