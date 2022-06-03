@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>admin</title>
 </head>
 
 <body>
@@ -18,6 +18,15 @@
         <input type="number" name="minutes" id="minutes" value="0" min="0" max="60"><br><br>
         <label for="seconds">Seconds</label>
         <input type="number" name="seconds" id="seconds" value="0" min="0" max="60"><br><br>
+        <label for="option">error:</label>
+        <select name="option">
+            <option value="">----</option>
+            <option value="hide">Hide Ticket</option>
+            <option value="error">show message and disable Book Now Button</option>
+            <option value="timer">Hide only Timer</option>
+            <option value="restart">Timer end then restart timer.</option>
+            <option value="discount">Remove discount</option>
+        </select> <br><br>
         <input type="submit" value="submit" onclick="timeOffer();">
     </form>
 </body>
@@ -25,9 +34,10 @@
 
     const timeOffer = () => {
         const data = Object.fromEntries(new FormData(timeFun).entries());
-        console.log(data);
+        let cDate = (data.days * 86400) + ((data.hours * 60) * 60) + (data.minutes * 60) + Number(data.seconds);
+        Object.assign(data, { cTime: cDate });
         localStorage.setItem('time', JSON.stringify(data));
-        // if (data.days >=)
+        localStorage.setItem('offer', "");
     }
     let timer = JSON.parse(window.localStorage.time);
     console.log(timer)
