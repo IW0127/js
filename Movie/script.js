@@ -21,26 +21,8 @@ let daySeconds = 86400;
 let hourSeconds = 3600;
 let minuteSeconds = 60;
 
-/* let checkClass = (classes, targetsClass) => {
-    // if (classes.length) {
-    //     targetsClass;
-    //     console.log(targetsClass);
-    // }
-    let t = targetsClass;
 
-    if (classes.length) {
-        console.log("yes");
-        targetsClass;
-    } else {
-        console.log(targetsClass);
-    }
-} 
-let checkId = (ids, targetsId) => {
-    if (ids) {
-        targetsId;
-    }
-}
-*/
+
 
 if (getTime) {
     getTime = JSON.parse(localStorage.time);
@@ -172,9 +154,9 @@ const timeOffer = () => {
                 BookNow.disabled = true;
                 break;
             case 'timer':
-                timer[0].style.display = 'none';
-                // checkClass(timer, timer[0].style = 'display:none;');
-
+                // timer[0].style.display = 'none';
+                timer.length ? timer[0].style.display = 'none' : '';
+                // checkClass("timer[0].style = 'display:none;'");
                 break;
             case 'restart':
                 let getSeconde = getTime.currentTime;
@@ -227,3 +209,25 @@ const bookTicket = () => {
             .catch(error => console.log('this is error => ', error));
     }
 }
+
+/* let checkClass = (targetsClass) => {
+    // if (classes.length) {
+    //     targetsClass;
+    //     console.log(targetsClass);
+    // }
+    // console.log(targetsClass);
+    //  if (classes.length) {
+    //     console.log("yes");
+    //     targetsClass;
+    // } else {
+    //     console.log(targetsClass);
+    // }
+    eval(targetsClass); 
+    // console.log(targetsClass.replaceAll(/ [""] +/g, ''));
+
+}
+let checkId = (ids, targetsId) => {
+    if (ids) {
+        targetsId;
+    }
+} */
