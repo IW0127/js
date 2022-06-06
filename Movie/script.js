@@ -6,6 +6,8 @@ let BookNow = document.getElementById('bookNow');
 let massage = document.getElementsByClassName('massage');
 let error = document.getElementsByClassName('error');
 let timer = document.getElementsByClassName('timer');
+let ticketBox = document.getElementsByClassName('ticketBox');
+let discount = document.getElementsByClassName('price');
 let day;
 let hour;
 let minute;
@@ -15,14 +17,39 @@ let random = Math.floor((Math.random() * 150) + 1);
 document.getElementById('SeatNum').innerHTML = random;
 
 let getTime = localStorage.time;
+let daySeconds = 86400;
+let hourSeconds = 3600;
+let minuteSeconds = 60;
+
+/* let checkClass = (classes, targetsClass) => {
+    // if (classes.length) {
+    //     targetsClass;
+    //     console.log(targetsClass);
+    // }
+    let t = targetsClass;
+
+    if (classes.length) {
+        console.log("yes");
+        targetsClass;
+    } else {
+        console.log(targetsClass);
+    }
+} 
+let checkId = (ids, targetsId) => {
+    if (ids) {
+        targetsId;
+    }
+}
+*/
+
 if (getTime) {
     getTime = JSON.parse(localStorage.time);
-
+    let getSeconde = getTime.currentTime;
     if (getTime) {
-        day = getTime.days;
-        hour = getTime.hours;
-        minute = getTime.minutes;
-        second = getTime.seconds;
+        day = Math.floor(getSeconde / daySeconds);
+        hour = Math.floor((getSeconde - day * daySeconds) / hourSeconds);
+        minute = Math.floor((getSeconde - day * daySeconds - hour * hourSeconds) / minuteSeconds);
+        second = getSeconde - day * daySeconds - hour * hourSeconds - minute * minuteSeconds;
     }
 }
 
@@ -35,10 +62,28 @@ if (jsonOffer) {
         hour = jsonOffer.hour;
         minute = jsonOffer.minute;
         second = jsonOffer.second;
-        Days[0].innerHTML = day;
-        Hours[0].innerHTML = hour;
-        Minutes[0].innerHTML = minute;
-        Seconds[0].innerHTML = second;
+        if (day < 10) {
+            Days[0].innerHTML = '0' + day;
+        } else {
+            Days[0].innerHTML = day;
+        }
+        if (hour < 10) {
+            Hours[0].innerHTML = '0' + hour;
+        } else {
+            Hours[0].innerHTML = hour;
+        }
+        if (minute < 10) {
+            Minutes[0].innerHTML = '0' + minute;
+
+        } else {
+            Minutes[0].innerHTML = minute;
+        }
+        if (second < 10) {
+            Seconds[0].innerHTML = '0' + second;
+
+        } else {
+            Seconds[0].innerHTML = second;
+        }
     }
 }
 
@@ -46,59 +91,119 @@ let offer;
 let offerClose = 0;
 
 const timeOffer = () => {
+
     if (day > 0) {
-        Days[0].innerHTML = day;
+        if (day < 10) {
+            Days[0].innerHTML = '0' + day;
+        } else {
+            Days[0].innerHTML = day;
+        }
     }
     if (day > 0 && hour == 0) {
         day--;
-        Days[0].innerHTML = day;
+        if (day < 10) {
+            Days[0].innerHTML = '0' + day;
+        } else {
+            Days[0].innerHTML = day;
+        }
         hour = 24;
         Hours[0].innerHTML = hour;
     }
 
     if (hour > 0) {
-        if (hour > 24) {
-
+        if (hour < 10) {
+            Hours[0].innerHTML = '0' + hour;
+        } else {
+            Hours[0].innerHTML = hour;
         }
-        Hours[0].innerHTML = hour;
     }
     if (hour > 0 && minute == 0) {
         hour--;
-        Hours[0].innerHTML = hour;
+        if (hour < 10) {
+            Hours[0].innerHTML = '0' + hour;
+        } else {
+            Hours[0].innerHTML = hour;
+        }
         minute = 59;
         Minutes[0].innerHTML = minute;
     }
     if (minute > 0) {
-        Minutes[0].innerHTML = minute;
+        if (minute < 10) {
+            Minutes[0].innerHTML = '0' + minute;
+
+        } else {
+            Minutes[0].innerHTML = minute;
+        }
     }
-    if (second == 0 && minute != 0) {
+    if (second == 0 && minute > 0) {
         minute--;
-        Minutes[0].innerHTML = minute;
+        if (minute < 10) {
+            Minutes[0].innerHTML = '0' + minute;
+
+        } else {
+            Minutes[0].innerHTML = minute;
+        }
         second = 60;
     }
     if (second > 0) {
         second--;
-        Seconds[0].innerHTML = second;
+        if (second < 10) {
+            Seconds[0].innerHTML = '0' + second;
+
+        } else {
+            Seconds[0].innerHTML = second;
+        }
     }
     offer = { day, hour, minute, second };
     localStorage.setItem('offer', JSON.stringify(offer));
     if ((day == 0) && (minute == 0) && (hour == 0) && (second == 0)) {
-        timer[0].style.display = 'none';
-        BookNow.style.cssText = `
-        background-color:#686363;
-        cursor: not-allowed;`;
-        BookNow.disabled = true;
-        massage[0].style.display = 'none';
-        error[0].style.display = 'block';
-        offerClose--;
-    }
-    if ((offerClose < -1)) {
-        localStorage.setItem('offer', '');
-        clearInterval(tim);
+        switch (getTime.option) {
+            case 'hide':
+                ticketBox[0].style.display = 'none';
+                massage[0].style.display = 'none';
+                error[0].style.display = 'block';
+                break;
+            case 'error':
+                massage[0].style.display = 'none';
+                error[0].style.display = 'block';
+                BookNow.style.cssText = `
+                background-color:#686363;
+                cursor: not-allowed;`;
+                BookNow.disabled = true;
+                break;
+            case 'timer':
+                timer[0].style.display = 'none';
+                // checkClass(timer, timer[0].style = 'display:none;');
+
+                break;
+            case 'restart':
+                let getSeconde = getTime.currentTime;
+                day = Math.floor(getSeconde / daySeconds);
+                hour = Math.floor((getSeconde - day * daySeconds) / hourSeconds);
+                minute = Math.floor((getSeconde - day * daySeconds - hour * hourSeconds) / minuteSeconds);
+                second = getSeconde - day * daySeconds - hour * hourSeconds - minute * minuteSeconds;
+                break;
+            case 'discount':
+                if (discount.length) {
+                    massage[0].style.display = 'none';
+                    error[0].style.display = 'block';
+                    discount[0].innerHTML = '₹340';
+                }
+                break;
+            default:
+                console.log('default');
+                break;
+        }
+
+        if (getTime.option != 'restart') {
+            localStorage.setItem('offer', '');
+            clearInterval(tim);
+        }
     }
 }
 
 const tim = setInterval(timeOffer, 1000);
+
 
 
 const bookTicket = () => {

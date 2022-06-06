@@ -37,7 +37,7 @@ forLoop();
 
 forEachLoop(); */
 
-let n = 1000;
+let n = 5;
 let string = ""
 for (i = 1; i <= n; i++) {
     for (let k = n; k >= i; k--) {
@@ -49,7 +49,17 @@ for (i = 1; i <= n; i++) {
     }
     string += "\n";
 }
-for (i = (n - 1); i >= 1; i--) {
+for (i = 1; i <= n; i++) {
+    for (let k = n; k >= i; k--) {
+        document.write(" ");
+    }
+    for (j = 1; j <= i; j++) {
+        document.write(" ");
+        document.write(i);
+    }
+    document.write("<br/>")
+}
+/* for (i = (n - 1); i >= 1; i--) {
     for (let k = n; k >= i; k--) {
         string += " ";
     }
@@ -58,5 +68,5 @@ for (i = (n - 1); i >= 1; i--) {
         string += i;
     }
     string += "\n";
-}
+} */
 console.log(string)

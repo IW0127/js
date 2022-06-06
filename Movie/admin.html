@@ -11,13 +11,13 @@
 <body>
     <form method="post" id="timeFun" name="timeFun">
         <label for="days">Days</label>
-        <input type="number" name="days" id="days" value="0" min="0" max="5"><br><br>
+        <input type="number" name="days" id="days" value="0" min="0"><br><br>
         <label for="hours">Hours</label>
-        <input type="number" name="hours" id="hours" value="0" min="0" max="23"><br><br>
+        <input type="number" name="hours" id="hours" value="0" min="0"><br><br>
         <label for="minutes">Minutes</label>
-        <input type="number" name="minutes" id="minutes" value="0" min="0" max="60"><br><br>
+        <input type="number" name="minutes" id="minutes" value="0" min="0"><br><br>
         <label for="seconds">Seconds</label>
-        <input type="number" name="seconds" id="seconds" value="0" min="0" max="60"><br><br>
+        <input type="number" name="seconds" id="seconds" value="0" min="0"><br><br>
         <label for="option">error:</label>
         <select name="option">
             <option value="">----</option>
@@ -29,13 +29,14 @@
         </select> <br><br>
         <input type="submit" value="submit" onclick="timeOffer();">
     </form>
+
 </body>
 <script>
 
     const timeOffer = () => {
         const data = Object.fromEntries(new FormData(timeFun).entries());
         let cDate = (data.days * 86400) + ((data.hours * 60) * 60) + (data.minutes * 60) + Number(data.seconds);
-        Object.assign(data, { cTime: cDate });
+        Object.assign(data, { currentTime: cDate });
         localStorage.setItem('time', JSON.stringify(data));
         localStorage.setItem('offer', "");
     }
@@ -46,6 +47,14 @@
         document.timeFun.hours.value = timer.hours;
         document.timeFun.minutes.value = timer.minutes;
         document.timeFun.seconds.value = timer.seconds;
+        let option = document.getElementsByName('option')[0].children;
+
+        for (let x of option) {
+            if (x.value == timer.option) {
+                x.selected = true;
+            }
+
+        }
     }
 
 </script>
