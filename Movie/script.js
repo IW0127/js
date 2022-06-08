@@ -155,6 +155,7 @@ const timeOffer = () => {
                 break;
             case 'timer':
                 // timer[0].style.display = 'none';
+                // timer[0].style.display = 'none'
                 timer.length ? timer[0].style.display = 'none' : '';
                 // checkClass("timer[0].style = 'display:none;'");
                 break;
@@ -210,24 +211,28 @@ const bookTicket = () => {
     }
 }
 
-/* let checkClass = (targetsClass) => {
+/* 
+let checkId = (ids, targetsId) => {
+    if (ids) {
+        targetsId;
+    }
+} 
+let checkClass = (classes,targetsClass) => {
     // if (classes.length) {
     //     targetsClass;
     //     console.log(targetsClass);
     // }
     // console.log(targetsClass);
-    //  if (classes.length) {
-    //     console.log("yes");
-    //     targetsClass;
-    // } else {
-    //     console.log(targetsClass);
-    // }
-    eval(targetsClass); 
-    // console.log(targetsClass.replaceAll(/ [""] +/g, ''));
-
-}
-let checkId = (ids, targetsId) => {
-    if (ids) {
-        targetsId;
+    /* if (classes.length) {
+        console.log("yes");
+        targetsClass;
+    } else {
+        console.log(targetsClass);
     }
-} */
+    // eval(targetsClass);
+    // console.log(targetsClass.replaceAll(/[""]+/g, ''));
+    
+}
+
+
+*/

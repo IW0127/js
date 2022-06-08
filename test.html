@@ -1,49 +1,114 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <h1>Hello</h1>
-    <p id="demo"></p>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <form id="demo" name="myform" method="post">
+        first Name: <input type="text" name="fname"><br /><br />
+        Lastname: <input type="text" name="lname"><br /> <br />
+        E-mail:<input type="email" name="Email"><br /><br />
+        Password: <input type="password" name="password"><br /><br />
+        Moblie number:<input type="number" name="number"></br></br>
+        conform password:<input type="password" name="conformpass"></br></br>
+        <input type="checkbox" name="agree" id="agree" value="agree" onclick="checkAgree();">
+        <label>I agree</label><br><br>
+        <input type="button" onclick="myfunction()" value="reset">
+        <input type="button" value="Submit" onclick="validateform('submit')">
+
+    </form>
     <script>
-        /* let y = Myfunction('a', 50);
-        function Myfunction(num, snum) {
-            let l = [];
-            if (typeof num === 'number' && typeof snum === 'number') {
-                for (i = num; i <= snum; i++) {
-                    l.push(i);
+        let error = [];
+        function validateform(e) {
+            var fname = document.myform.fname.value;
+            var lname = document.myform.lname.value;
+            var email = document.myform.Email.value;
+            var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.(com|in|uk))+$/g;
+            var password = document.myform.password.value;
+            var Number = document.myform.number.value;
+            var regPhone = /^\d{10}$/;
+            var conformpass = document.myform.conformpass.value;
+            var checkBox = document.myform.agree;
+            if (fname) {
+                if (fname.length >= 11) {
+                    alert("your fname min 10 character")
+                    console.log(fname);
+                    error.push(0);
                 }
             }
-            else if (typeof num === 'string' && typeof snum === 'string') {
-                for (i = num.charCodeAt(); i <= snum.charCodeAt(); i++) {
-                    l.push(String.fromCharCode(i));
-                    console.log(i);
-                }
+            else {
+                alert("first Name can't be blank");
+                error.push(0);
+
             }
-            else if (typeof num === 'string' || typeof snum === 'number') {
-                for (i = num.charCodeAt(); i <= num.charCodeAt() + snum; i++) {
-                    l.push(String.fromCharCode(i));
-                    console.log(i);
+            if (lname) {
+                if (lname.length >= 11) {
+                    alert("your lname min 10 character")
+                    error.push(0);
 
                 }
             }
             else {
-                l.push('wrong');
-            }
-            return l;
-        }
+                alert("last Name can't be blank");
+                error.push(0);
 
-        document.getElementById("demo").innerHTML = y; */
+            }
+            if (email == null || !regEmail.test(email)) {
+                alert("plese enter valid e-mail address");
+                error.push(0);
+
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                error.push(0);
+
+                return false;
+            }
+            if (Number == null || !regPhone.test(Number)) {
+                alert("plese valid youe moblie number");
+                error.push(0);
+
+                return false;
+            }
+            if (conformpass == null || conformpass != password) {
+                alert("password is not same!!!!")
+                error.push(0);
+
+                return false;
+            }
+            if (!checkBox.checked) {
+                alert("check is not checked.");
+                error.push(0);
+
+            }
+            if (e == "submit") {
+                if (error == "") {
+                    document.myform.fname.value = "";
+                    document.myform.lname.value = "";
+                    document.myform.Email.value = "";
+                    document.myform.password.value = "";
+                    document.myform.number.value = "";
+                    document.myform.conformpass.value = "";
+                    document.myform.agree.checked = false;
+                }
+            }
+
+        }
+        function myfunction() {
+            document.getElementById("demo").reset();
+        }
+        function checkAgree() {
+            validateform("no");
+            if (error != "")
+                document.myform.agree.checked = false;
+        }
     </script>
-</head>
 
 </html>
-
-
-<script>
-
-    let a = 5;
-    let b = a * 10;
-    let c = b - 9;
-    for (let i = c; i <= b; i++) {
-        console.log(i);
-    }
-</script>
