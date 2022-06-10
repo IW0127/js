@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "src": "./img/download.jfif",
+    "product": "Camera",
+    "price": 2000
+  },
+  {
+    "id": 2,
+    "src": "./img/giorgio-trovato-K62u25Jk6vo-unsplash.jpg",
+    "product": "Goggles",
+    "price": 789
+  },
+  {
+    "id": 3,
+    "src": "./img/images (1).jfif",
+    "product": "Head Phone",
+    "price": 5000
+  }
+]

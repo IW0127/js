@@ -90,7 +90,7 @@ const fetchData = (method, url, data) => {
 
 
 const fetchGet = () => {
-    fetchData('GET', 'https://jsonplaceholder.typicode.com/todos/');
+    fetchData('GET', 'user.json');
 };
 
 const fetchPost = () => {
