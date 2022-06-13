@@ -3,19 +3,38 @@ let ADD_BUNDLE_BTN = document.getElementById('add_Bundle');
 let BUY_PRODUCTS = document.getElementById('Buy_Product_List');
 
 /*  read file */
-const fetchData = async (url) => {
-    try {
-        const response = await fetch(url);
-        let data;
-        if (response.ok) {
-            data = await response.text();
-        }
-        return data;
-    } catch (e) {
-        console.log(e)
-    }
+/* const fetchData = async (url) => {
+    let data = '';
 
+    await fetch(url)
+        .then(response => console.log(response))
+    try {
+        console.log("111111111111111111111");
+
+        // console.log("q222222222222222222222", response);
+
+        console.log("333333333333333333333333");
+
+        // if (response.ok) {
+        //     data = await response.text();
+        // }
+        console.log("1444444444444444444");
+
+    } catch (e) {
+        console.log("error => ", e);
+    }
+    console.log("555555555555555555555555")
+    return data;
+
+} */
+
+const fetchData = (url) => {
+    return (
+        fetch(url)
+            .then(response => response.text())
+    )
 }
+
 
 const fetchJson = fetchData('product.json');
 
@@ -40,10 +59,8 @@ fetchJson.then(resultJson => {
                     htmlProductText += replaceStr(productHtml, find, replace);
                 }
                 PRODUCT_TARGET ? PRODUCT_TARGET.innerHTML = htmlProductText : 0;
-            })
-            .then(() => {
                 ADD_BUNDLE_BTN.style.display = 'block';
-            });
+            })
     } else {
         console.log("Not Found");
     }
@@ -72,13 +89,14 @@ const buyProduct = (productId) => {
                             }
                         }
                     }
+                    console.log(addProduct);
                     BUY_PRODUCTS.innerHTML = htmlBuyProductsText;
-                })
+                });
         } else {
             console.log("Not Found");
         }
     })
-        .catch(error => console.log("error => ", error))
+        .catch(error => console.log("error => ", error));
 }
 
 

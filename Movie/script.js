@@ -74,6 +74,8 @@ let offerClose = 0;
 
 const timeOffer = () => {
 
+
+
     if (day > 0) {
         if (day < 10) {
             Days[0].innerHTML = '0' + day;
@@ -138,6 +140,15 @@ const timeOffer = () => {
     }
     offer = { day, hour, minute, second };
     localStorage.setItem('offer', JSON.stringify(offer));
+    if (!localStorage.time) {
+        clearInterval(tim);
+        localStorage.setItem('offer', '');
+        console.log("yes");
+        Seconds[0].innerHTML = '00';
+        Minutes[0].innerHTML = '00';
+        Hours[0].innerHTML = '00';
+        Days[0].innerHTML = '00';
+    }
     if ((day == 0) && (minute == 0) && (hour == 0) && (second == 0)) {
         switch (getTime.option) {
             case 'hide':
