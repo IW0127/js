@@ -1,14 +1,22 @@
-/* simple method */
-/* Get method */
-
-axios.get('https://reqres.in/api/users')
+/* simple methods */
+/* ------------------------- Get methods ------------------------- */
+/* ------------------------- Get all ----------------------------- */
+axios.get('https://reqres.in/api/users/')
+    .then(response => {
+        const users = response.data.data;
+        console.log(`GET users`, users);
+    })
+    .catch(error => console.error(error));
+/* ------------------------- Get one ---------------------------- */
+axios.get('https://reqres.in/api/users/2')
     .then(response => {
         const users = response.data.data;
         console.log(`GET users`, users);
     })
     .catch(error => console.error(error));
 
-/* Post method */
+
+/* ------------------------- Post method ----------------------- */
 
 const user = `{"avatar": "https://reqres.in/img/faces/1-image.jpg","email": "george.bluth@reqres.in","first_name": "George","id": 1000,"last_name": "Bluth"}`;
 
@@ -19,8 +27,20 @@ axios.post('https://reqres.in/api/users', user)
     })
     .catch(error => console.error(error));
 
+/* ---------------------- Update method ----------------------- */
 
-/* Delete Data */
+const userUpdate = { "avatar": "https://reqres.in/img/faces/1-image.jpg", "email": "george.bluth@reqres.in", "first_name": "George", "id": 2, "last_name": "Bluth" };
+
+axios.put('https://reqres.in/api/users/2', userUpdate)
+    .then(response => {
+        const UpdateUser = response.data;
+        console.log(`put: user is Update`, UpdateUser);
+    })
+    .catch(error => console.error(error));
+
+
+/* ----------------------- Delete Data ----------------------- */
+
 axios.delete(`https://reqres.in/api/users/3`)
     .then(response => {
         console.log(`DELETE: user is removed 3`);
@@ -29,55 +49,17 @@ axios.delete(`https://reqres.in/api/users/3`)
     .catch(error => console.error(error));
 
 
-/* Get method */
-const getUsers = () => {
-    axios.get('https://reqres.in/api/users')
-        .then(response => {
-            const users = response.data.data;
-            console.log(`GET users`, users);
-        })
-        .catch(error => console.error(error));
-};
-getUsers();
+/* Options method */
 
-const createUser = (user) => {
-    axios.post('https://reqres.in/api/users', user)
-        .then(response => {
-            const addedUser = response.data;
-            console.log(`POST: user is added`, addedUser);
-            // append to DOM
-            appendToDOM([addedUser]);
-        })
-        .catch(error => console.error(error));
-};
-
-// createUser(user);
-
-const deleteUser = (id) => {
-    axios.delete(`https://reqres.in/api/users/${id}`)
-        .then(response => {
-            console.log(`DELETE: user is removed`, id);
-            console.log(response);
-        })
-        .catch(error => console.error(error));
-};
-
-deleteUser(2);
-
-/* 
 const options = {
-    method: 'post',
+    method: 'get',
     url: 'https://reqres.in/api/users',
-    data: {
-        firstName: 'Finn',
-        lastName: 'Williams'
-    },
-    transformResponse: [(data) => {
+    /* transformResponse: [(data) => {
         // transform the response
-        console.log(data)
+        console.log(data.data)
         return data;
-    }]
+    }] */
 };
 
 // send the request
-axios(options).then(res => console.log(res.data)); */
+axios(options).then(res => console.log("options :-", res.data.data));
