@@ -1,4 +1,4 @@
-const form = document.myForm;
+/* const form = document.myForm;
 function validation() {
     const fname = form.fname.value;
     const lname = form.lname.value;
@@ -61,4 +61,13 @@ function validation() {
 function resetFunction() {
 
     document.myForm.reset();
+} */
+
+let arr = [];
+let min = 1;
+let max = 20000000; let x;
+for (let x = 1; x <= 200000000; x++) {
+    arr.push(Math.floor(Math.random() * (max - min + 1)) + min)
 }
+console.log(arr);
+console.log(arr.filter(x => x > 80000))

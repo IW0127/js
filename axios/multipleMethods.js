@@ -17,10 +17,11 @@ const crudOperation = async (method, url, data, json) => {
             }]
         }
 
+        console.log("yes");
         const response = await axios(options);
         return response;
     } catch (error) {
-        console.log('error=========>', error);
+        console.log('error=========>', error.message);
     }
 }
 
@@ -46,11 +47,12 @@ const sendData = {
 };
 
 crudOperation('POST', 'https://jsonplaceholder.typicode.com/todos/', sendData, true)
-    .then(result => console.log("Post users ==============>", result.data))
-    .catch(error => console.log('error=========>', error));
+    .then(result => console.log("Post users =========>", result.data))
+    .catch(error => console.log('error =========>', error));
 
-/* ---------------------- Update method ----------------------- */
+/* ------------------------- Update method ---------------------------- */
 const updateData = {
+    "id": 20,
     "userId": 10,
     "title": "axios",
     "completed": true
@@ -60,9 +62,13 @@ crudOperation('PUT', 'https://jsonplaceholder.typicode.com/todos/20', updateData
     .then(result => console.log("Update users ==============>", result.data))
     .catch(error => console.log('error=========>', error));
 
+/* ------------------------- Delete method --------------------------- */
 
 crudOperation('DELETE', 'https://jsonplaceholder.typicode.com/todos/20', null, true)
     .then(result => console.log("Delete user ==============>", result.data))
     .catch(error => console.log('error=========>', error));
+
+
+
 
 
