@@ -1,9 +1,12 @@
+
 console.clear();
 let style = 'background: #0086fb; font-family:cascadia code; font-weight:bold; border-radius:5px; padding:2px;';
+let styleSub = 'background: coral; font-family:cascadia code; font-weight:bold; border-radius:5px; padding:2px;';
 console.log('%c ==> ES6 <== ', 'background: #12cb19; font-family:cascadia code; font-weight:bold; border-radius:5px;');
 
 /*  1. Constants  */
-console.log("%c =>Constants ", style);
+console.log("%c => Constants ", style);
+console.log("%c • Constants ", styleSub);
 const PI = 3.141593;
 console.log(PI);
 
@@ -56,7 +59,7 @@ console.log(this);
 
 console.log("%c =>Extended Parameter Handling ", style);
 
-const sum = (x, y = 7, z = 42) => {
+var sum = (x, y = 7, z = 42) => {
     return x + y + z
 }
 console.log(sum(4));
@@ -149,7 +152,7 @@ let parser = (input, match) => {
 }
 
 let report = (match) => {
-    console.log(JSON.stringify(match))
+    console.log(match)
 }
 parser("Foo 1 Bar 7 Baz 42", [
     { pattern: /Foo\s+(\d+)/y, action: (match) => report(match) },
@@ -168,12 +171,31 @@ parser("Foo 1 Bar 7 Baz 42", [
 */
 console.log('%c =>Enhanced Object Properties ', style);
 
-let x = 0;
-let y = 0;
-const obj = { x, y };
-
+var x = 0;
+var y = 0;
+var obj = { x, y };
 console.log(obj);
 
+var quu = () => 9;
+var obj2 = {
+    foo: "bar",
+    ["baz" + quu()]: 42
+};
+console.log('Value obj2:', obj2);
+
+var obj3 = {
+    foo(a, b) {
+        return a + b;
+    },
+    bar(x, y) {
+        return x * y;
+    },
+    *quux2(x, y) {
+        return x + y;
+    }
+};
+
+console.log(`Value obj3:`, obj3.quux2(3, 4));
 /* ********************************************************** */
 
 /*  9. Destructuring Assignment
@@ -184,7 +206,80 @@ console.log(obj);
     * Parameter Context Matching
     * Fail-Soft Destructuring
 */
-console.log('%c =>Destructuring Assignment ', style);
+
+console.log('%c => Destructuring Assignment ', style);
+
+console.log('%c • Array Matching ', styleSub);
+
+var list = [1, 2, 3];
+var [a, , b] = list;
+console.log('Value a:', a);
+console.log('Value b:', b);
+[b, a] = [a, b];
+console.log('Value a:', a);
+console.log('Value b:', b);
+
+console.log('%c • Object Matching, Shorthand Notation ', styleSub);
+
+function getASTNode() {
+    return { op: 1, lhs: 2, rhs: 3 };
+};
+var { op, lhs, rhs } = getASTNode();
+console.log('Value op:', op);
+console.log('Value lhs:', lhs);
+console.log('Value rhs:', rhs);
+
+console.log('%c • Object Matching, Deep Matching ', styleSub);
+
+function getASTNode2() {
+    return { op: 1, lhs: { op: 2 }, rhs: 3 };
+};
+var { op: a, lhs: { op: b }, rhs: c } = getASTNode2();
+console.log(`Value a:`, a);
+console.log(`Value b:`, b);
+console.log(`Value c:`, c);
+
+
+console.log('%c • Object And Array Matching, Default Values ', styleSub);
+
+var obj = { a: 1 };
+var { a, b = 2 } = obj;
+
+console.log(`Value a:`, a);
+console.log(`Value b:`, b);
+
+var list = [1];
+var [x, y = 2] = list;
+
+console.log(`Value x:`, x);
+console.log(`Value y:`, y);
+
+console.log('%c • Parameter Context Matching ', styleSub);
+
+function f([name, val]) {
+    console.log(name, val);
+}
+
+function g({ name: n, val: v }) {
+    console.log(n, v);
+}
+
+function h({ name, val }) {
+    console.log(name, val);
+}
+
+f(["bar", 42]);
+g({ name: "foo", val: 7 });
+h({ name: "bar", val: 42 });
+
+console.log('%c • Fail-Soft Destructuring ', styleSub);
+
+var list = [7, 42];
+var [a = 1, b = 2, c = 3, d] = list;
+console.log('Compare a === 7:', a === 7);
+console.log('Compare b === 42:', b === 42);
+console.log('Compare c === 3:', c === 3);
+console.log('Compare d === undefined:', d === undefined);
 
 
 /* ********************************************************** */
@@ -194,7 +289,19 @@ console.log('%c =>Destructuring Assignment ', style);
     * Default & Wildcard
 */
 
-console.log('%c =>Modules ', style);
+console.log('%c => Modules ', style);
+console.log('%c • Value Export/Import ', styleSub);
+
+import * as math from "./lib/math.js";
+import { sumV, pi } from "./lib/math.js";
+
+console.log("2π = ", math.sumV(math.pi, math.pi));
+console.log("2π = ", sumV(pi, pi));
+
+console.log('%c • Default & Wildcard ', styleSub);
+
+import exp from "./lib/math.js";
+console.log(exp(3))
 
 
 /* ********************************************************** */
@@ -208,23 +315,312 @@ console.log('%c =>Modules ', style);
     * Getter/Setter
 */
 
-console.log('%c =>Classes ', style);
+console.log('%c => Classes ', style);
+console.log('%c • Class Definition ', styleSub);
 
+class Shape1 {
+    constructor(id, x, y) {
+        this.id = id;
+        this.move(x, y);
+    }
+    move(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    getPos() {
+        return {
+            x: this.x,
+            y: this.y
+        };
+    }
+}
+
+let shape = new Shape1(1, 10, 20);
+console.log('Shape pos:', shape.getPos());
+shape.move(15, 35);
+console.log('Shape pos:', shape.getPos());
+
+console.log('%c • Class Inheritance ', styleSub);
+
+
+class Rectangle extends Shape1 {
+    constructor(id, x, y, width, height) {
+        super(id, x, y);
+        this.width = width;
+        this.height = height;
+    }
+    getSize() {
+        return {
+            width: this.width,
+            height: this.height
+        };
+    }
+}
+
+class Circle extends Shape1 {
+    constructor(id, x, y, radius) {
+        super(id, x, y);
+        this.radius = radius;
+    }
+}
+
+let rectangle = new Rectangle(2, 11, 21, 100, 200);
+console.log('Rectangle size:', rectangle.getSize());
+
+let circle = new Circle(2, 80, 90, 50);
+console.log('Circle pos:', circle.getPos());
+
+
+console.log('%c • Class Inheritance, From Expressions ', styleSub);
+
+var aggregation = (baseClass, ...mixins) => {
+    let base = class _Combined extends baseClass {
+        constructor(...args) {
+            super(...args);
+            mixins.forEach((mixin) => {
+                mixin.prototype.initializer.call(this);
+            });
+        }
+    };
+    let copyProps = (target, source) => {
+        Object.getOwnPropertyNames(source)
+            .concat(Object.getOwnPropertySymbols(source))
+            .forEach((prop) => {
+                if (prop.match(/^(?:constructor|prototype|arguments|caller|name|bind|call|apply|toString|length)$/))
+                    return
+                Object.defineProperty(target, prop, Object.getOwnPropertyDescriptor(source, prop))
+            })
+    }
+    mixins.forEach((mixin) => {
+        copyProps(base.prototype, mixin.prototype);
+        copyProps(base, mixin);
+    });
+    return base;
+};
+
+class Colored {
+    initializer() {
+        this._color = 'white';
+    }
+    get color() {
+        return this._color;
+    }
+    set color(v) {
+        this._color = v;
+    }
+}
+
+class ZCoord {
+    initializer() {
+        this._z = 0;
+    }
+    get z() {
+        return this._z;
+    }
+    set z(v) {
+        this._z = v;
+    }
+}
+
+class Shape {
+    constructor(x, y) {
+        this._x = x;
+        this._y = y;
+    }
+    get x() {
+        return this._x;
+    }
+    set x(v) {
+        this._x = v;
+    }
+    get y() {
+        return this._y;
+    }
+    set y(v) {
+        this._y = v;
+    }
+}
+
+class Rectangle1 extends aggregation(Shape, Colored, ZCoord) { };
+
+var rect = new Rectangle1(7, 42);
+rect.z = 1000;
+rect.color = 'red';
+console.log(`Rectangle data:
+    pos x: ${rect.x}
+    pos y: ${rect.y}
+    pos z: ${rect.z}
+    color: ${rect.color}`);
+
+
+console.log('%c • Base Class Access ', styleSub);
+
+
+class Shape2 {
+    constructor(id, x, y) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+    }
+    toString() {
+        return `Shape(${this.id})`;
+    }
+}
+class Rectangle2 extends Shape2 {
+    constructor(id, x, y, width, height) {
+        super(id, x, y);
+    }
+    toString() {
+        return `Rectangle > ${super.toString()}`;
+    }
+}
+class Circle2 extends Shape2 {
+    constructor(id, x, y, radius) {
+        super(id, x, y);
+    }
+    toString() {
+        return `Circle > ${super.toString()}`;
+    }
+}
+
+let shape2 = new Shape2(1, 10, 20);
+console.log(shape2);
+let rectangle2 = new Rectangle2(2, 20, 30);
+console.log(rectangle2);
+let circle2 = new Circle2(3, 30, 40);
+console.log(circle2);
+
+
+console.log('%c • Static Members ', styleSub);
+class Rectangle3 extends Shape2 {
+    constructor(id, x, y, width, height) {
+        super(id, x, y);
+        this.width = width;
+        this.height = height;
+    }
+    static defaultRectangle() {
+        return new Rectangle('default', 2, 2, 100, 100);
+    }
+}
+class Circle3 extends Shape2 {
+    constructor(id, x, y, radius) {
+        super(id, x, y);
+        this.radius = radius;
+    }
+    static defaultCircle() {
+        return new Circle('default', 4, 4, 100);
+    }
+}
+
+let rectangle3 = Rectangle3.defaultRectangle();
+console.log(`Rectangle data:`, rectangle3);
+let circle3 = Circle3.defaultCircle();
+console.log(`Circle data:`, circle3);
+
+console.log('%c • Getter/Setter ', styleSub);
+class Rectangle4 {
+    constructor(width, height) {
+        this._width = width;
+        this._height = height;
+    }
+    set width(width) {
+        this._width = width;
+    }
+    get width() {
+        return this._width;
+    }
+    set height(height) {
+        this._height = height;
+    }
+    get height() {
+        return this._height;
+    }
+    get area() {
+        return this._width * this._height;
+    }
+};
+
+var r = new Rectangle4(50, 20);
+console.log('Compare rectangle.area === 1000:', r.area === 1000);
 /* ********************************************************** */
-
 
 /*  12. Symbol Type
     * Symbol Type
     * Global Symbols
 */
+
 console.log('%c =>Symbol Type ', style);
+
+console.log('%c • Symbol Type ', styleSub);
+
+console.log('Symbol("foo"):', Symbol('foo'));
+console.log('Symbol("foo") !== Symbol("foo"):', Symbol("foo") !== Symbol("foo"));
+
+var foo1 = Symbol();
+var bar1 = Symbol();
+console.log('typeof foo1 === "symbol":', typeof foo1 === 'symbol');
+console.log('typeof bar1 === "symbol":', typeof bar1 === 'symbol');
+
+var obj = {};
+obj[foo1] = "foo1";
+obj[bar1] = "bar1";
+console.log('Value obj:', obj);
+console.log('Value Object.keys(obj):', Object.keys(obj));
+console.log('Value Object.getOwnPropertyNames(obj):', Object.getOwnPropertyNames(obj));
+console.log('Value Object.getOwnPropertySymbols(obj):', Object.getOwnPropertySymbols(obj));
+console.log('Value obj["foo1"]:', obj['foo1']);
+console.log('Value obj[foo1]:', obj[foo1]);
+
+
+console.log('%c • Global Symbols ', styleSub);
+
+console.log('Symbol.for("app.foo") === Symbol.for("app.foo"):', Symbol.for("app.foo") === Symbol.for("app.foo"));
+
+foo1 = Symbol.for("app.foo");
+bar1 = Symbol.for("app.bar");
+console.log('Symbol.keyFor(foo) === "app.foo":', Symbol.keyFor(foo1) === "app.foo");
+console.log('Symbol.keyFor(bar1) === "app.bar":', Symbol.keyFor(bar1) === "app.bar");
+console.log('typeof foo1 === "symbol":', typeof foo1 === "symbol");
+console.log('typeof bar1 === "symbol":', typeof bar1 === "symbol");
+
+obj = {};
+obj[foo1] = "foo1";
+obj[bar1] = "bar1";
+console.log('Value obj:', obj);
+console.log('Value Object.keys(obj):', Object.keys(obj));
+console.log('Value Object.getOwnPropertyNames(obj):', Object.getOwnPropertyNames(obj));
+console.log('Value Object.getOwnPropertySymbols(obj):', Object.getOwnPropertySymbols(obj));
+console.log('Value obj[foo1]:', obj[foo1]);
 
 /* ********************************************************** */
 
 /*  13. Iterators
     * Iterator & For-Of Operator
 */
-console.log('%c =>Iterators ', style);
+console.log('%c => Iterators ', style);
+
+console.log('%c • Iterator & For-Of Operator ', styleSub);
+var fibonacci = {
+    [Symbol.iterator]() {
+        let pre = 0,
+            cur = 1;
+        return {
+            next() {
+                [pre, cur] = [cur, pre + cur];
+                return {
+                    done: false,
+                    value: cur
+                };
+            }
+        };
+    }
+}
+
+for (var n of fibonacci) {
+    if (n > 100)
+        break;
+    console.log('Current value fibonacci:', n);
+}
 
 /* ********************************************************** */
 
@@ -235,8 +631,64 @@ console.log('%c =>Iterators ', style);
     * Generator Control-Flow
     * Generator Methods
 */
-console.log('%c =>Generators ', style);
 
+console.log('%c => Generators ', style);
+
+console.log('%c • Generator Function, Iterator Protocol ', styleSub);
+
+fibonacci = {
+    *[Symbol.iterator]() {
+        let pre = 0,
+            cur = 1;
+        for (; ;) {
+            [pre, cur] = [cur, pre + cur];
+            yield cur;
+        }
+    }
+}
+for (let n of fibonacci) {
+    if (n > 100)
+        break;
+    console.log('Current value fibonacci:', n);
+}
+
+console.log('%c • Generator Function, Direct Use ', styleSub);
+
+function* range(start, end, step) {
+    while (start < end) {
+        yield start;
+        start += step;
+    }
+}
+
+for (let i of range(0, 10, 2)) {
+    console.log('Current value range:', i);
+}
+
+console.log('%c • Generator Matching ', styleSub);
+
+let fibonacci = function* (numbers) {
+    let pre = 0,
+        cur = 1;
+    while (numbers-- > 0) {
+        [pre, cur] = [cur, pre + cur];
+        yield cur;
+    }
+};
+
+for (let n of fibonacci(10)) {
+    console.log(`Current value fibonacci:`, n);
+}
+
+let numbers = [...fibonacci(10)];
+console.log(`Value numbers:`, JSON.stringify(numbers));
+let [n1, n2, n3, ...others] = fibonacci(10);
+
+console.log(`Values n1, n2, n3, others:`, n1, n2, n3, others);
+
+console.log('%c • Generator Control-Flow ', styleSub);
+console.log('%c • Generator Methods ', styleSub);
+s
 /* ********************************************************** */
 
 /*  15. Map/Set & WeakMap/WeakSet
@@ -245,6 +697,9 @@ console.log('%c =>Generators ', style);
     * Weak-Link Data-Structures
 */
 console.log('%c =>Map/Set & WeakMap/WeakSet ', style);
+console.log('%c • Set Data-Structure ', styleSub);
+console.log('%c • Map Data-Structure ', styleSub);
+console.log('%c • Weak-Link Data-Structures ', styleSub);
 
 /* ********************************************************** */
 
@@ -253,6 +708,7 @@ console.log('%c =>Map/Set & WeakMap/WeakSet ', style);
 */
 console.log('%c =>Typed Arrays ', style);
 
+console.log('%c • Typed Arrays ', styleSub);
 /* ********************************************************** */
 
 /*  15. New Built-In Methods
@@ -267,6 +723,15 @@ console.log('%c =>Typed Arrays ', style);
     * Number Sign Determination
 */
 console.log('%c =>New Built-In Methods ', style);
+console.log('%c • Object Property Assignment ', styleSub);
+console.log('%c • Array Element Finding ', styleSub);
+console.log('%c • String Repeating ', styleSub);
+console.log('%c • String Searching ', styleSub);
+console.log('%c • Number Type Checking ', styleSub);
+console.log('%c • Number Safety Checking ', styleSub);
+console.log('%c • Number Comparison ', styleSub);
+console.log('%c • Number Truncation ', styleSub);
+console.log('%c • Number Sign Determination ', styleSub);
 
 /* ********************************************************** */
 
@@ -275,6 +740,8 @@ console.log('%c =>New Built-In Methods ', style);
     * Promise Combination
 */
 console.log('%c =>Promises ', style);
+console.log('%c • Promise Usage ', styleSub);
+console.log('%c • Promise Combination ', styleSub);
 
 /* ********************************************************** */
 
@@ -283,6 +750,8 @@ console.log('%c =>Promises ', style);
     * Reflection
 */
 console.log('%c =>Meta-Programming ', style);
+console.log('%c • Proxying ', styleSub);
+console.log('%c • Reflection ', styleSub);
 
 /* ********************************************************** */
 
@@ -293,3 +762,7 @@ console.log('%c =>Meta-Programming ', style);
     * Date/Time Formatting
 */
 console.log('%c =>Internationalization & Localization ', style);
+console.log('%c • Collation ', styleSub);
+console.log('%c • Number Formatting ', styleSub);
+console.log('%c • Currency Formatting ', styleSub);
+console.log('%c • Date/Time Formatting ', styleSub);
