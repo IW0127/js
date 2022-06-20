@@ -499,7 +499,7 @@ class Shape2 {
         this.y = y;
     }
     toString() {
-        return `Shape(${this.id})`;
+        return 'Shape(${this.id})';
     }
 }
 class Rectangle2 extends Shape2 {
@@ -507,7 +507,7 @@ class Rectangle2 extends Shape2 {
         super(id, x, y);
     }
     toString() {
-        return `Rectangle > ${super.toString()}`;
+        return 'Rectangle > ${super.toString()}';
     }
 }
 class Circle2 extends Shape2 {
@@ -515,7 +515,7 @@ class Circle2 extends Shape2 {
         super(id, x, y);
     }
     toString() {
-        return `Circle > ${super.toString()}`;
+        return 'Circle > ${super.toString()}';
     }
 }
 
@@ -549,9 +549,9 @@ class Circle3 extends Shape2 {
 }
 
 let rectangle3 = Rectangle3.defaultRectangle();
-console.log(`Rectangle data:`, rectangle3);
+console.log('Rectangle data:', rectangle3);
 let circle3 = Circle3.defaultCircle();
-console.log(`Circle data:`, circle3);
+console.log('Circle data:', circle3);
 
 console.log('%c • Getter/Setter ', styleSub);
 class Rectangle4 {
@@ -759,12 +759,12 @@ obj = {
 };
 
 let clz = new Clz();
-console.log(`Clz bar:`, clz.bar().next());
+console.log('Clz bar:', clz.bar().next());
 
 obj3 = obj.foo();
-console.log(`Obj.foo:`, obj3.next());
-console.log(`Obj.foo:`, obj3.next());
-console.log(`Obj.foo:`, obj3.next());
+console.log('Obj.foo:', obj3.next());
+console.log('Obj.foo:', obj3.next());
+console.log('Obj.foo:', obj3.next());
 
 /* ********************************************************** */
 
@@ -790,10 +790,10 @@ console.log('%c • Map Data-Structure ', styleSub);
 var m = new Map();
 m.set('hello', 42);
 m.set(s, 34);
-console.log(`m.get(s) === 34:`, m.get(s) === 34);
-console.log(`m.size === 2:`, m.size === 2);
+console.log('m.get(s) === 34:', m.get(s) === 34);
+console.log('m.size === 2:', m.size === 2);
 for (var [key, val] of m.entries()) {
-    console.log(`key:`, key, ` - val:`, val);
+    console.log('key:', key, ' - val:', val);
 }
 console.log(m);
 
@@ -1101,6 +1101,6 @@ console.log('%c • Date/Time Formatting ', styleSub);
 
 var l10nEN = new Intl.DateTimeFormat('en-US');
 var l10nDE = new Intl.DateTimeFormat('de-DE');
-console.log(`Compare date format EN:`, l10nEN.format(new Date('2017-01-02')) === '1/2/2017');
-console.log(`Compare date format DE:`, l10nDE.format(new Date('2017-01-02')) === '2.1.2017');
+console.log('Compare date format EN:', l10nEN.format(new Date('2017-01-02')) === '1/2/2017');
+console.log('Compare date format DE:', l10nDE.format(new Date('2017-01-02')) === '2.1.2017');
 
