@@ -2,7 +2,7 @@
 console.clear();
 let style = 'background: #0086fb; font-family:cascadia code; font-weight:bold; border-radius:5px; padding:2px;';
 let styleSub = 'background: coral; font-family:cascadia code; font-weight:bold; border-radius:5px; padding:2px;';
-console.log('%c ==> ES6 <== ', 'background: #12cb19; font-family:cascadia code; font-weight:bold; border-radius:5px;');
+console.log('%c ==> ⚡ ES6 ⚡ <== ', 'background: #12cb19; font-family:cascadia code; font-weight:bold; border-radius:5px; padding: 2px;');
 
 /*  1. Constants  */
 console.log("%c => Constants ", style);
@@ -83,7 +83,7 @@ console.log(sum(4));
 console.log("%c • Rest Parameter ", styleSub);
 
 const restParameter = (...arg) => {
-    console.log(...arg);
+    console.log(arg);
 };
 restParameter(1, 2, 3, 4, 5, 6, 7);
 
@@ -774,7 +774,7 @@ console.log(`Obj.foo:`, obj3.next());
     * Weak-Link Data-Structures
 */
 
-console.log('%c =>Map/Set & WeakMap/WeakSet ', style);
+console.log('%c => Map/Set & WeakMap/WeakSet ', style);
 
 console.log('%c • Set Data-Structure ', styleSub);
 
@@ -900,7 +900,7 @@ console.log('Value example.amountDue:', example.amountDue);
     * Number Truncation
     * Number Sign Determination
 */
-console.log('%c =>New Built-In Methods ', style);
+console.log('%c => New Built-In Methods ', style);
 
 console.log('%c • Object Property Assignment ', styleSub);
 
@@ -987,7 +987,7 @@ console.log('Math.sign(NaN):', Math.sign(NaN));
     * Promise Usage
     * Promise Combination
 */
-console.log('%c =>Promises ', style);
+console.log('%c => Promises ', style);
 
 console.log('%c • Promise Usage ', styleSub);
 
@@ -1021,7 +1021,7 @@ console.log(Promise.all([
     * Proxying
     * Reflection
 */
-console.log('%c =>Meta-Programming ', style);
+console.log('%c => Meta-Programming ', style);
 
 console.log('%c • Proxying ', styleSub);
 
@@ -1056,7 +1056,7 @@ console.log('Reflect.ownKeys(obj):', Reflect.ownKeys(obj));
     * Currency Formatting
     * Date/Time Formatting
 */
-console.log('%c =>Internationalization & Localization ', style);
+console.log('%c => Internationalization & Localization ', style);
 
 console.log('%c • Collation ', styleSub);
 
