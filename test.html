@@ -1,60 +1,32 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <style>
-        img {
-            pointer-events: none;
-            /* doing this makes sure .elementFromPoint
-			do not acquires the image cursor object */
-            position: absolute;
+    <title>User-defined objects</title>
+    <script>
+        // Define a function which will work as a method
+        function addPrice(amount) {
+            with (this) {
+                price = amount;
+            }
         }
-
-        button {
-            position: absolute;
-            left: 90%;
-            margin: 10px;
+        function book(title, author) {
+            this.title = title;
+            this.author = author;
+            this.price = 0;
+            this.addPrice = addPrice; // Assign that method as property.
         }
-
-        /* makes the cursor invisible */
-
-        * {
-            cursor: none;
-        }
-    </style>
+    </script>
 </head>
 
 <body>
-    <img id="cursor" src="https://media.geeksforgeeks.org/wp-content/uploads/20200319212118/cursor2.png" width="15"
-        height="20" />
+    <script type="text/javascript">
+        var myBook = new book("Python", "Tutorialspoint");
+        console.log(myBook.addPrice.bind(100));
 
-    <p>
-        <button id="b1">BUTTON1</button>
-    </p>
-    <script>
-        x = 0;
-        y = 0;
-        setInterval(
-            window.addEventListener("mousemove", function (e) {
-
-                // Gets the x,y position of the mouse cursor
-                if (x == 100 && y == 100) {
-                    x = 0;
-                    y = 0;
-                }
-                // sets the image cursor to new relative position
-                cursor.style.left = x + "%";
-                cursor.style.top = y + "%";
-                x++;
-                y++;
-            }), 100
-        );
-
+        document.write("Book title is : " + myBook.title + "<br>");
+        document.write("Book author is : " + myBook.author + "<br>");
+        document.write("Book price is : " + myBook.price + "<br>");
     </script>
-
 </body>
 
 </html>
