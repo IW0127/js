@@ -3,44 +3,34 @@ let ADD_BUNDLE_BTN = document.getElementById('add_Bundle');
 let BUY_PRODUCTS = document.getElementById('Buy_Product_List');
 
 /*  read file */
-/* const fetchData = async (url) => {
+const fetchData = async (url) => {
     let data = '';
-
-    await fetch(url)
-        .then(response => console.log(response))
     try {
-        console.log("111111111111111111111");
-
-        // console.log("q222222222222222222222", response);
-
-        console.log("333333333333333333333333");
-
-        // if (response.ok) {
-        //     data = await response.text();
-        // }
-        console.log("1444444444444444444");
-
+        const response = await fetch(url);
+        // .then(response => console.log(response))
+        if (response.ok) {
+            data = await response.text();
+        }
+        return data;
     } catch (e) {
         console.log("error => ", e);
     }
-    console.log("555555555555555555555555")
-    return data;
 
-} */
+}
 
-const fetchData = (url) => {
+/* const fetchData = (url) => {
     return (
         fetch(url)
             .then(response => response.text())
     )
-}
+} */
 
 
 const fetchJson = fetchData('product.json');
-
 /* replace function */
 const replaceStr = (str, find, replace) => {
-    for (var i = 0; i < find.length; i++) {
+    let findLen = find.length;
+    for (let i = 0; i < findLen; i++) {
         str = str.replace(RegExp(find[i], 'g'), replace[i]);
     }
     return str;
@@ -70,10 +60,10 @@ fetchJson.then(resultJson => {
 
 /* onclick Buy button function */
 
-const addProduct = new Set();
+const addProduct = [];
 
 const buyProduct = (productId) => {
-    addProduct.add(productId);
+    addProduct.push(productId);
     fetchJson.then(resultJson => {
         if (resultJson) {
             fetchData('buyProduct.html')
@@ -89,7 +79,6 @@ const buyProduct = (productId) => {
                             }
                         }
                     }
-                    console.log(addProduct);
                     BUY_PRODUCTS.innerHTML = htmlBuyProductsText;
                 });
         } else {
@@ -111,9 +100,13 @@ const addBundle = () => {
                     let find = ['%IMG%', '%PRODUCT%', '%PRICE%'];
                     let htmlBuyProductsText = '';
                     for (let c in jsonProducts) {
-                        addProduct.add(`${jsonProducts[c].id}`);
-                        let replace = [jsonProducts[c].src, jsonProducts[c].product, jsonProducts[c].price];
-                        htmlBuyProductsText += replaceStr(buyProducts, find, replace);
+                        addProduct.push(`${jsonProducts[c].id}`);
+                        for (let r of addProduct) {
+                            if (jsonProducts[c].id == r) {
+                                let replace = [jsonProducts[c].src, jsonProducts[c].product, jsonProducts[c].price];
+                                htmlBuyProductsText += replaceStr(buyProducts, find, replace);
+                            }
+                        }
                     }
                     BUY_PRODUCTS.innerHTML = htmlBuyProductsText;
                 })
