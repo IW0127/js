@@ -1,31 +1,28 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>User-defined objects</title>
-    <script>
-        // Define a function which will work as a method
-        function addPrice(amount) {
-            with (this) {
-                price = amount;
-            }
-        }
-        function book(title, author) {
-            this.title = title;
-            this.author = author;
-            this.price = 0;
-            this.addPrice = addPrice; // Assign that method as property.
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <script type="text/javascript">
-        var myBook = new book("Python", "Tutorialspoint");
-        console.log(myBook.addPrice.bind(100));
 
-        document.write("Book title is : " + myBook.title + "<br>");
-        document.write("Book author is : " + myBook.author + "<br>");
-        document.write("Book price is : " + myBook.price + "<br>");
+
+    <p class='abc'>
+        <span>kdkk</span>
+        <span>kd</span>
+        p tag (class name is abc)
+    </p>
+    <div class='abc'>div tag (class name is abc)</div>
+    <script>
+
+        var pTag = document.querySelectorAll('.abc:first-child').values().next().value
+        // var divTag = document.querySelectorA('.abc:last-of-type').innerHTML;
+        console.log(pTag);
+        console.log(document.querySelectorAll('.abc'))
     </script>
 </body>
 

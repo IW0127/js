@@ -72,50 +72,50 @@ DeleteData();
  */
 
 const fetchData = (method, url, data) => {
-    fetch(url, {
-        method,
-        body: data,
-        headers: {
-            "Content-type": "application/json; charset=UTF-8"
-        }
+  fetch(url, {
+    method,
+    body: data,
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+    .then((Response) => Response.json())
+    .then((result) => {
+      console.log(`-----${method}-----`);
+      console.log(result);
     })
-        .then(Response => Response.json())
-        .then(result => {
-            console.log(`-----${method}-----`);
-            console.log(result);
-        })
-        .catch(error => console.log("THIS IS ERROR => ", error));
-
-}
-
+    .catch((error) => console.log('THIS IS ERROR => ', error));
+};
 
 const fetchGet = () => {
-    fetchData('GET', 'user.json');
+  fetchData('GET', 'user.json');
 };
 
 const fetchPost = () => {
-    let data = JSON.stringify({
-        title: 'foo',
-        body: 'bar',
-        userId: 1
-    });
-    fetchData('POST', 'https://jsonplaceholder.typicode.com/posts/', data);
+  let data = JSON.stringify({
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+  });
+  fetchData(
+    'POST',
+    'https://hardik-dholariya.myshopify.com/cart/update.json',
+    data
+  );
 };
 
 const fetchPut = () => {
-    let data = JSON.stringify({
-        id: 1,
-        title: 'fetch',
-        body: 'Put data',
-        userId: 1
-    });
-    fetchData('PUT', 'https://jsonplaceholder.typicode.com/posts/1', data);
+  let data = JSON.stringify({
+    id: 1,
+    title: 'fetch',
+    body: 'Put data',
+  });
+  fetchData('PATCH', 'https://jsonplaceholder.typicode.com/posts/1', data);
 };
 
 const fetchDelete = () => {
-    fetchData('DELETE', 'https://jsonplaceholder.typicode.com/posts/101');
+  fetchData('DELETE', 'https://jsonplaceholder.typicode.com/posts/101');
 };
-
 
 fetchGet();
 
@@ -124,4 +124,3 @@ fetchPost();
 fetchPut();
 
 fetchDelete();
-
