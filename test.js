@@ -116,3 +116,60 @@ xhr.onerror = () => {
 };
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send();
+
+// get
+fetch('cart.js')
+  .then((response) => {
+    return response.json();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+// add
+fetch('cart/add.js', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    id: 40826946322564,
+    quantity: 2,
+    properties: {},
+  }),
+})
+  .then((response) => response.json())
+  .catch((error) => error);
+
+// update.js
+fetch('cart/update.js', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    id: 40826946322564,
+    attributes: { 'Order Type': 'Store Pickup' },
+  }),
+})
+  .then((response) => response.json())
+  .catch((error) => error);
+
+// change.js
+
+fetch('cart/change.js', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    line: 1,
+    quantity: 3,
+  }),
+})
+  .then((response) => response.json())
+  .catch((error) => error);
+
+// clear.js
+
+fetch('cart/clear');
